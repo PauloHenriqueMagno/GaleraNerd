@@ -1,6 +1,6 @@
 import { Input } from "@chakra-ui/react";
 
-const ComponentInput = ({ ...rest }) => {
+const ComponentInput = ({registerName, register, ...rest }) => {
   return <Input {...rest} />;
 };
 
