@@ -12,10 +12,14 @@ import {
   // FormHelperText,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { UserContext } from "../../providers/User";
+import { useContext } from "react";
 
 import { InputGroup, InputLeftElement } from "@chakra-ui/input";
+import style from "./styles";
 
 const ComponentLogin = () => {
+  const { login } = useContext(UserContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup.string().required("Campo obrigatório").email(),
@@ -29,34 +33,15 @@ const ComponentLogin = () => {
 
   const submitForm = (data) => {
     console.log(data);
+    login(data)
+
+    // data.user.dev
+    //   ? history.push("/dev-profile")
+    //   : history.push("/user-profile");
   };
 
   return (
-    <Box
-      sx={{
-        color: "black",
-        bgColor: "white",
-        p: 15,
-        width: { mobile: "90%", desktop: 450 },
-        height: { mobile: "80%", desktop: 410 },
-        borderRadius: 8,
-        ".loginTitle": {
-          fontSize: "25px",
-          ml: 15,
-        },
-        ".theRealForm": {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "max-content",
-          label: {
-            alignSelf: "flex-start",
-            ml: 15,
-          },
-        },
-      }}
-    >
+    <Box sx={style}>
       <h1 className="loginTitle">
         <strong>Bem vindo!</strong>
       </h1>
@@ -65,27 +50,10 @@ const ComponentLogin = () => {
           <FormLabel>Login</FormLabel>
           <InputGroup>
             <InputLeftElement
-              children={
-                <EmailIcon
-                  color="gray"
-                  transform="translate(50%, 50%)"
-                  position="absolute"
-                  left="50%"
-                  top="65%"
-                />
-              }
+              children={<EmailIcon className="emailInputIcon" />}
             />
             <ComponentInput
-              sx={{
-                m: 5,
-                p: "0 30px",
-                width: "90%",
-                bgColor: "lightgray",
-                color: "black",
-                _placeholder: {
-                  color: "black",
-                },
-              }}
+              className="emailInput"
               placeholder="Digite seu login"
               register={register}
               variant="filled"
@@ -96,28 +64,12 @@ const ComponentLogin = () => {
           <FormLabel>Senha</FormLabel>
           <InputGroup>
             <InputLeftElement
-              children={
-                <LockIcon
-                  color="gray"
-                  transform="translate(50%, 50%)"
-                  position="absolute"
-                  left="50%"
-                  top="60%"
-                />
-              }
+              children={<LockIcon className="passwordInputIcon" />}
             />
             <ComponentInput
-              sx={{
-                borderColor: "black",
-                m: 5,
-                p: "0 30px",
-                width: "90%",
-                bgColor: "white",
-                color: "black",
-                _placeholder: {
-                  color: "black",
-                },
-              }}
+              id="none"
+              className="passwordInput"
+              type="password"
               placeholder="Digite sua senha"
               register={register}
               variant="outline"
@@ -125,10 +77,8 @@ const ComponentLogin = () => {
             />
           </InputGroup>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-          <Button
-          sx={{backgroundColor:"purple.1", color: "white"}}
-          >Entrar</Button>
-          <p onClick={() => history.push("/register")}>
+          <Button type="submit">Entrar</Button>
+          <p className="toRegister" onClick={() => history.push("/register")}>
             Ainda não tem uma conta? Crie uma agora
           </p>
         </FormControl>
