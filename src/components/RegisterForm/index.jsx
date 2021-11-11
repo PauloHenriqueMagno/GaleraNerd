@@ -2,8 +2,8 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Box, Heading, VStack, Button, Input, Checkbox } from "@chakra-ui/react";
-// import Input from "../Input";
+import { Box, Heading, VStack, Button, Checkbox } from "@chakra-ui/react";
+import Input from "../Input";
 
 const RegisterForm = () => {
 
