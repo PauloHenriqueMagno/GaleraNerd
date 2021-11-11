@@ -7,7 +7,7 @@ const Register = () => {
     <Flex align="center" justify="flex-end" height="100vh" bgGradient="linear(to-r, white 35%, purple.2 35%)">
       
       <RegisterForm />
-      <Image src={svg} w="40%" mx="90" />
+      <Image src={svg} w="40%" ml="10" mr="20" />
     </Flex>
   )
 }
