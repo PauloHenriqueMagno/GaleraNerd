@@ -1,10 +1,10 @@
 import { Switch, Route } from "react-router";
+import Register from "../pages/Register";
 
 const Routes = () => {
     return (
         <Switch>
-            <Route path="/">
-            </Route>
+            <Route path="/" component={Register} />
         </Switch>
     );
 };
