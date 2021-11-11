@@ -2,7 +2,8 @@ const style = {
   color: "black",
   bgColor: "white",
   p: 15,
-  width: { mobile: "90%", desktop: 450 },
+  border: "solid #4630AB 2px",
+  width: { mobile: "90vw", desktop: 450 },
   height: { mobile: "80%", desktop: 410 },
   borderRadius: 8,
   ".loginTitle": {
@@ -28,6 +29,7 @@ const style = {
     top: "65%",
   },
   ".emailInput": {
+    
     m: 5,
     p: "0 30px",
     width: "90%",
@@ -56,16 +58,20 @@ const style = {
     },
   },
   ".toRegister": {
+    color: "purple.2",
+    fontWeight: "bold",
     ":hover": {
       cursor: "pointer",
       textDecoration: "underline",
     },
   },
   button: {
-    backgroundColor: "purple.1",
+    backgroundColor: "purple.2",
+    width: "90%",
     color: "white",
+    mb: 30,
     ":hover": {
-      backgroundColor: "purple.1",
+      backgroundColor: "purple.2",
       filter: "grayscale(20%)",
     },
   },

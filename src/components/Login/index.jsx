@@ -33,7 +33,7 @@ const ComponentLogin = () => {
 
   const submitForm = (data) => {
     console.log(data);
-    login(data)
+    login(data);
 
     // data.user.dev
     //   ? history.push("/dev-profile")
@@ -55,8 +55,8 @@ const ComponentLogin = () => {
             <ComponentInput
               className="emailInput"
               placeholder="Digite seu login"
-              register={register}
               variant="filled"
+              register={register}
               registerName="email"
             />
           </InputGroup>
@@ -78,8 +78,9 @@ const ComponentLogin = () => {
           </InputGroup>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
           <Button type="submit">Entrar</Button>
+          <p>Ainda não tem uma conta?</p>
           <p className="toRegister" onClick={() => history.push("/register")}>
-            Ainda não tem uma conta? Crie uma agora
+            Crie uma agora!
           </p>
         </FormControl>
       </form>
