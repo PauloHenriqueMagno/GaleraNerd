@@ -10,18 +10,29 @@ export const DevProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("galeranerd/user")) || {}
   );
+  const [devList, setDevList] = useState([]);
+
+  const getDevList = () => {
+    api
+      .get("dev")
+      .then((res) => setDevList(res.data))
+      .catch((err) => console.log(err));
+  };
 
   const editProfile = (data) => {
     api
-      .patch(`dev/${data.userId}`, data, {
+      .patch(`dev/${userInfo.id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
   const devRegister = (data) => {
     api
-      .post("signup", data)
+      .post("dev", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         console.log(res);
         setToken(res.data.accessToken);
@@ -34,8 +45,11 @@ export const DevProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
-    <DevContext.Provider value={{ editProfile }}>
+    <DevContext.Provider
+      value={{ editProfile, devRegister, getDevList, devList }}
+    >
       {children}
     </DevContext.Provider>
   );

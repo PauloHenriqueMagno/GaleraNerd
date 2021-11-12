@@ -43,11 +43,12 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+  
   const logOut = () => {
     localStorage.clear();
     history.push("/");
-    setToken("")
-    setUserInfo({})
+    setToken("");
+    setUserInfo({});
   };
   return (
     <UserContext.Provider value={{ login, register, logOut }}>
