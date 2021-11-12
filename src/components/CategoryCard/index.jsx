@@ -7,7 +7,8 @@ const CategoryCard = ({ category, action }) => {
     <Flex
       direction="column"
       bg="#FFF"
-      w={{ mobile: "377px", desktop: "410px" }}
+      minW={{ mobile: "90%", desktop: "410px" }}
+      maxW={{ mobile: "377px", desktop: "410px" }}
       p="40px"
       border="3px solid"
       borderColor="black.4"
