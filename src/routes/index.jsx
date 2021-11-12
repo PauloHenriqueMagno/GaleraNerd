@@ -1,11 +1,17 @@
 import { Switch, Route } from "react-router";
-import HeaderComponent from "../components/Header";
+import Register from "../pages/Register";
+import Login from "../pages/login";
 
 const Routes = () => {
     return (
         <Switch>
+            <Route path="/register">
+                <Register />
+            </Route>
+            <Route path="/login">
+                <Login />
+            </Route>
             <Route path="/">
-                <HeaderComponent />
             </Route>
         </Switch>
     );
