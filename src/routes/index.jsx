@@ -4,7 +4,7 @@ import Register from "../pages/Register";
 const Routes = () => {
     return (
         <Switch>
-            <Route path="/" component={Register} />
+            <Route path="/register" component={Register} />
         </Switch>
     );
 };
