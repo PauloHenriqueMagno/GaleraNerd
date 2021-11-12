@@ -1,7 +1,7 @@
 const LoginSVG = () => {
   return (
     <svg
-      width="627"
+      width="100%"
       height="563"
       viewBox="0 0 627 563"
       fill="none"

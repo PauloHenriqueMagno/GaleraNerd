@@ -1,13 +1,14 @@
 const style = {
   ".contentContainer": {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
     maxWidth: 1280,
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    width: { desktop: "100vw" },
   },
   background: {
     mobile:
@@ -17,8 +18,14 @@ const style = {
   },
   height: "100vh",
   ".loginSVG": {
-    width: "20%",
-    minWidth: 250,
+    flex: 1,
+  },
+  ".loginForm": { flex: 1, ml: { desktop: "5%" } },
+  ".arrowBackIcon": {
+    fontSize: "27px",
+    position: "absolute",
+    m: 25,
+    bottom: 0
   },
 };
 
