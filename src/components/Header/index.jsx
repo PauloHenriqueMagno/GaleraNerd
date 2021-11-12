@@ -9,14 +9,16 @@ import {
     ThemeHeader,
     UserMenu,
     UserMenuIcon,
+    UserIconStyle
 } from "./styled";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
-import Logo from "../../assets/logoGN.svg"
-import MenuIcon from "../../assets/Menu.tsx"
-import { BsPersonCircle } from "react-icons/bs";
-import { RiLogoutBoxLine } from "react-icons/ri";
-import { AiOutlineProfile } from "react-icons/ai"
+import { useContext, useState } from "react";
+import { UserContext } from "../../providers/User";
+import Logo from "../../assets/logoGN.svg";
+import UserIcon from "../../assets/UserIconSVG";
+import MenuIcon from "../../assets/MenuSGV";
+import ProfileIcon from "../../assets/ProfileIconSVG";
+import LogOutIcon from "../../assets/LogoutSVG"
 import {
     MenuButton,
     MenuList,
@@ -25,13 +27,12 @@ import {
 import theme from "../../Styles";
 
 const HeaderComponent = () => {
-    const [isOpen, setIsOpen] = useState("")
-    const layoutDesconnected = ThemeHeader.components.button.display["false"];
-    const layoutConnectedMobile = ThemeHeader.components.display.mobile["true"];
-    const layoutConnectedDesktop = ThemeHeader.components.display.desktop["true"];
+    const [isOpen, setIsOpen] = useState("");
+    const { userInfo } = useContext(UserContext);
+
+    const connected = (userInfo === {} ? true : false);
     
     const history = useHistory();
-
 
     const MenuNav = ThemeHeader.components.nav[(isOpen? "open": "close")];
 
@@ -51,35 +52,41 @@ const HeaderComponent = () => {
                 </MenuUser>
                 <UserMenuNav sx={(isOpen!== "" && MenuNav)}>
                     <Button
-                        sx={layoutDesconnected}
+                        logged={connected}
                         onClick={()=> history.push("/login")}
                     >
                         Entrar
                     </Button>
                     <Button
-                        sx={layoutDesconnected}
+                        logged={connected}
                         onClick={()=> history.push("/register")}
                     >
                         Criar Conta
                     </Button>
                     <Button
-                        sx={ThemeHeader.colors.blue}
+                        color={theme.colors.purple[2]}
                         onClick={()=> history.push("/services")}
                     >
                         Serviços
                     </Button>
 
-                    <Button sx={layoutConnectedMobile}>
+                    <Button
+                        device="mobile"
+                        logged={!connected}
+                    >
                         <UserMenuIcon>
-                            <AiOutlineProfile color={theme.colors.white} />
+                            <ProfileIcon color={theme.colors.white} />
                         </UserMenuIcon>
                         <div>
                             <p>Ir para meu perfil</p>
                         </div>
                     </Button>
-                    <Button sx={layoutConnectedMobile}>
+                    <Button
+                        device="mobile"
+                        logged={!connected}
+                    >
                         <UserMenuIcon variant="error">
-                            <RiLogoutBoxLine color={theme.colors.white} />
+                            <LogOutIcon color={theme.colors.white} />
                         </UserMenuIcon>
                         <div>
                             <p>Sair da minha conta</p>
@@ -87,13 +94,15 @@ const HeaderComponent = () => {
                     </Button>
 
                     <UserMenu >
-                        <MenuButton sx={layoutConnectedDesktop}>
-                            <BsPersonCircle color={theme.colors.grey[1]} />
+                        <MenuButton
+                            sx={UserIconStyle(!connected)}
+                        >
+                            <UserIcon color={theme.colors.grey[1]} />
                         </MenuButton>
                         <MenuList>
                             <MenuItem>
                                 <UserMenuIcon>
-                                    <AiOutlineProfile color={theme.colors.white} />
+                                    <ProfileIcon />
                                 </UserMenuIcon>
                                 <div>
                                     <p>Ir para meu perfil</p>
@@ -102,7 +111,7 @@ const HeaderComponent = () => {
                             </MenuItem>
                             <MenuItem>
                                 <UserMenuIcon variant="error">
-                                    <RiLogoutBoxLine color={theme.colors.white} />
+                                    <LogOutIcon color={theme.colors.white} />
                                 </UserMenuIcon>
                                 <div>
                                     <p>Sair da minha conta</p>

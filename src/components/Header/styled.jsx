@@ -27,15 +27,6 @@ const open = keyframes`
 `;
 
 export const ThemeHeader = {
-    colors: {
-        blue: {
-            color: theme.colors.purple[2],
-
-            _hover: {
-                color: "#7e61ff",
-            },
-        },
-    },
     components: {
         button: {
             display: {
@@ -46,32 +37,6 @@ export const ThemeHeader = {
                     display: "block",
                 },
             },
-        },
-        display: {
-            desktop: {
-                false: {
-                    display: "none"
-                },
-                true: {
-                    display: "none",
-
-                    "@media (min-width: 769px)": {
-                        display: "block"
-                    },
-                },
-            },
-            mobile: {
-                false: {
-                    display: "none"
-                },
-                true: {
-                    display: "block",
-                    
-                    "@media (min-width: 769px)": {
-                        display: "none",
-                    },
-                },
-            }
         },
         nav: {
             close: {
@@ -91,6 +56,18 @@ export const ThemeHeader = {
             },
         },
     },
+};
+
+export const UserIconStyle = (logged = true) => {
+    return (
+        {
+            display: "none",
+        
+            "@media (min-width: 769px)": {
+                display: logged? "flex": "none",
+            },
+        }
+    )
 };
 
 export const Header = chakra("header", {
@@ -130,7 +107,7 @@ export const MenuUser = chakra("button", {
         cursor: "pointer",
 
         svg: {
-            fontsize: "10px",
+            fontsize: "13px",
         },
 
         "@media (min-width: 769px)": {
@@ -183,43 +160,59 @@ export const UserMenuNav = chakra("nav", {
     
 });
 
-export const Button = chakra("button", {
-    baseStyle: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        fontFamily: "Inter",
-        fontWeight: "600",
-        textAlign: "center",
-        fontStyle: "normal",
-        color: theme.colors.grey[1],
-        borderRadius: "8px",
-        
-        _hover: {
-            color: theme.colors.black[2],
-        },
+export const Button = ({children, device = "all", logged = true, color = theme.colors.grey[1]}) => {
+    const display = (type) => {
+        const mod = device === type? "flex": device === "all"? "flex": "none";
+        const isLogged = logged? "flex": "none";
 
-        p: {
-            fontWeight: "600",
-            fontSize: "20px",
-            color: theme.colors.grey[1],
-        },
+        if(mod==="flex" && isLogged==="flex"){
+            return "flex";
+        }else{
+            return "none"
+        }
+    }
 
-        "@media (max-width: 768px)": {
+    const Element = chakra("button", {
+        baseStyle: {
             display: "flex",
-            border: `1px solid ${theme.colors.purple[2]}`,
-            padding: "15px",
-            fontSize: "20px",
-            width: "90%",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            fontFamily: "Inter",
+            fontWeight: "600",
+            textAlign: "center",
+            fontStyle: "normal",
+            color: color,
+            borderRadius: "8px",
+            
+            _hover: {
+                filter: "brightness(50%)",
+            },
+
+            p: {
+                fontWeight: "600",
+                fontSize: "20px",
+                color: theme.colors.grey[1],
+            },
+
+            "@media (max-width: 768px)": {
+                display: display("mobile"),
+                border: `1px solid ${theme.colors.purple[2]}`,
+                padding: "15px",
+                fontSize: "20px",
+                width: "90%",
+            },
+            "@media (min-width: 769px)": {
+                display: display("desktop"),
+                padding: "5px",
+                fontSize: "12px",
+                width: "max-content",
+            },
         },
-        "@media (min-width: 769px)": {
-            padding: "5px",
-            fontSize: "14px",
-            width: "max-content",
-        },
-    },
-});
+    });
+
+    return <Element>{children}</Element>
+}
 
 export const UserMenu = chakra(Menu, {
     display: "none",

@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router";
 import Register from "../pages/Register";
 import Login from "../pages/login";
+import HeaderComponent from "../components/Header";
 
 const Routes = () => {
     return (
@@ -12,6 +13,7 @@ const Routes = () => {
                 <Login />
             </Route>
             <Route path="/">
+                <HeaderComponent />
             </Route>
         </Switch>
     );
