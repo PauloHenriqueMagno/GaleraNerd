@@ -12,6 +12,7 @@ const theme = extendTheme({
       2: "#666665",
       3: "#9E9EAT",
       4: "#F5F5F5",
+      5: "#9E9EA7",
     },
     success: "#25D970",
     error: "#DF1545",
