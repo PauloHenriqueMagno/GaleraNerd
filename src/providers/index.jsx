@@ -1,10 +1,17 @@
 import { UserProvider } from "./User";
+import { DevProvider } from "./Dev";
+import { FeedbackProvider } from "./Feedbacks";
+import { ProjectsProvider } from "./Projects";
 
 const Provider = ({ children }) => {
   return (
-      <UserProvider>
-          {children}
-      </UserProvider>
+    <ProjectsProvider>
+      <FeedbackProvider>
+        <DevProvider>
+          <UserProvider>{children}</UserProvider>
+        </DevProvider>
+      </FeedbackProvider>
+    </ProjectsProvider>
   );
 };
 

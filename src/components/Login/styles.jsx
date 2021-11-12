@@ -2,12 +2,15 @@ const style = {
   color: "black",
   bgColor: "white",
   p: 15,
-  width: { mobile: "90%", desktop: 450 },
-  height: { mobile: "80%", desktop: 410 },
+  border: "solid #4630AB 2px",
+  width: { mobile: "90vw", desktop: "100%" },
+  height: { mobile: "80%", desktop: 480 },
+  maxWidth: 500,
   borderRadius: 8,
   ".loginTitle": {
     fontSize: "25px",
     ml: 15,
+    mt: 5,
   },
   ".theRealForm": {
     display: "flex",
@@ -18,6 +21,7 @@ const style = {
     label: {
       alignSelf: "flex-start",
       ml: 15,
+      md: 0,
     },
   },
   ".emailInputIcon": {
@@ -25,10 +29,12 @@ const style = {
     transform: "translate(50%, 50%)",
     position: "absolute",
     left: "50%",
-    top: "65%",
+    top: "13%",
   },
   ".emailInput": {
     m: 5,
+    mt: 0,
+    mb: 0,
     p: "0 30px",
     width: "90%",
     bgColor: "lightgray",
@@ -42,11 +48,13 @@ const style = {
     transform: "translate(50%, 50%)",
     position: "absolute",
     left: "50%",
-    top: "60%",
+    top: "13%",
   },
   ".passwordInput": {
     borderColor: "black",
     m: 5,
+    mt: 0,
+    mb: 0,
     p: "0 30px",
     width: "90%",
     bgColor: "white",
@@ -56,18 +64,34 @@ const style = {
     },
   },
   ".toRegister": {
+    color: "purple.2",
+    fontWeight: "bold",
+    m: 5,
     ":hover": {
       cursor: "pointer",
       textDecoration: "underline",
     },
   },
   button: {
-    backgroundColor: "purple.1",
+    backgroundColor: "purple.2",
+    width: "89%",
+    height: { mobile: 35, desktop: 50 },
+    boxSizing: "border-box",
     color: "white",
+    mt: 5,
+    mb: 30,
     ":hover": {
-      backgroundColor: "purple.1",
+      backgroundColor: "purple.2",
       filter: "grayscale(20%)",
     },
+  },
+  ".loginInputContainer": {
+    width: "100%",
+  },
+  ".css-1owdgwf": {
+    color: "error",
+    textAlign: "start",
+    m: 0,
   },
 };
 
