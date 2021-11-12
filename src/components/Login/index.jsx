@@ -9,7 +9,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  // FormHelperText,
+  FormHelperText,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../providers/User";
@@ -22,7 +22,10 @@ const ComponentLogin = () => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup.string().required("Campo obrigatório").email(),
+    email: yup
+      .string()
+      .required("Campo obrigatório")
+      .email("Insira um email válido"),
     password: yup.string().required("Campo obrigatório"),
   });
   const {
@@ -32,12 +35,10 @@ const ComponentLogin = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const submitForm = (data) => {
-    console.log(data);
-    login(data)
-
-    // data.user.dev
-    //   ? history.push("/dev-profile")
-    //   : history.push("/user-profile");
+    login(data);
+    JSON.parse(localStorage.getItem("galeranerd/user")).dev
+      ? history.push("/dev-profile")
+      : history.push("/user-profile");
   };
 
   return (
@@ -46,27 +47,32 @@ const ComponentLogin = () => {
         <strong>Bem vindo!</strong>
       </h1>
       <form onSubmit={handleSubmit(submitForm)}>
-        <FormControl className="theRealForm">
+        <FormControl
+          isInvalid={errors.email?.message && errors.password?.message}
+          className="theRealForm"
+        >
           <FormLabel>Login</FormLabel>
           <InputGroup>
             <InputLeftElement
               children={<EmailIcon className="emailInputIcon" />}
             />
             <ComponentInput
+              errorBorderColor="crimson"
               className="emailInput"
               placeholder="Digite seu login"
-              register={register}
               variant="filled"
+              register={register}
               registerName="email"
             />
           </InputGroup>
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          <FormHelperText>{errors.email?.message}</FormHelperText>
           <FormLabel>Senha</FormLabel>
           <InputGroup>
             <InputLeftElement
               children={<LockIcon className="passwordInputIcon" />}
             />
             <ComponentInput
+              errorBorderColor="crimson"
               id="none"
               className="passwordInput"
               type="password"
@@ -76,10 +82,11 @@ const ComponentLogin = () => {
               registerName="password"
             />
           </InputGroup>
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+          <FormHelperText>{errors.password?.message}</FormHelperText>
           <Button type="submit">Entrar</Button>
+          <p>Ainda não tem uma conta?</p>
           <p className="toRegister" onClick={() => history.push("/register")}>
-            Ainda não tem uma conta? Crie uma agora
+            Crie uma agora!
           </p>
         </FormControl>
       </form>
