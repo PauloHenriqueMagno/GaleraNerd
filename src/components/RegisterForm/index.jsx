@@ -22,7 +22,18 @@ const RegisterForm = () => {
   const handleSigin = (data) => console.log(data);
 
   return(
-    <Box as='form' bg="white" border="3px solid gray" color="black" w="30%" p='4' borderRadius='4' onSubmit={handleSubmit(handleSigin)} >
+    <Box 
+      mt="15px"
+      as='form' 
+      bg="white" 
+      border="3px solid gray" 
+      color="black" 
+      minWidth="300px" 
+      maxWidth="500px" 
+      w={{mobile:"90%", desktop: "30%"}} 
+      p='4' borderRadius='4' 
+      onSubmit={handleSubmit(handleSigin)} 
+    >
       <Heading size='lg' >Crie sua conta</Heading>
       <VStack mt='5' spacing="5" >
         <Input placeholder="nome" register={register} registerName="name" />
