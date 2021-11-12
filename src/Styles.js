@@ -13,6 +13,11 @@ const theme = extendTheme({
       3: "#9E9EAT",
       4: "#F5F5F5",
     },
+    grey: {
+      1: "#939393",
+      2: "#9E9EA7",
+      3: "#F5F5F5",
+    },
     success: "#25D970",
     error: "#DF1545",
     white: "#FFFFFF",
