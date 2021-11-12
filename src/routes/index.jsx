@@ -6,7 +6,7 @@ const Routes = () => {
     return (
         <Switch>
             <Route path="/register">
-                <Register>
+                <Register />
             </Route>
             <Route path="/login">
                 <Login />
