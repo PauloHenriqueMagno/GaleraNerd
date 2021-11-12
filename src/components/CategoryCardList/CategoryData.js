@@ -11,41 +11,41 @@ export const categoryList = [
     title: "Desenvolvimento de Aplicativos",
     image: MobileAplicationSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Precisa de um aplicativo, os desenvolvedores podem te ajudar a tirar essa idéia da cabeça.",
   },
   {
     id: 2,
     title: "Website institucional",
     image: PersonalWebsiteSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Está precisando de um site simples e incrível, pessoal ou para sua empresa, então clique e encontre um desenvolvedor para te ajudar!",
   },
   {
     id: 3,
     title: "Sistemas",
     image: ProgressiveAppSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Quer um desenvolvedor pra te ajudar a fazer aquele sistema com várias funcionalidades incríveis, então vamos lá!",
   },
   {
     id: 4,
     title: "Jogos",
     image: GamesSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Tire do papel aquela idéia de jogo com a ajuda de nossos desenvolvedores.",
   },
   {
     id: 5,
     title: "E-commerce",
     image: EcommerceSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Quer vender em sua pŕopria loja virtual? Tenho certeza que esses desenvolvedores vão te ajudar.",
   },
   {
     id: 6,
     title: "Consultoria",
     image: PresentationSVG,
     description:
-      "Criar um aplicativo parte da vontade que se tem de oferecer um serviço diferenciado para o público e seus clientes.",
+      "Já tem um projeto funcionando e precisa de ajuda, esses desenvolvedores prestam consultoria para te ajudar com esses problemas.",
   },
 ];
