@@ -23,7 +23,9 @@ export const ProjectsProvider = ({ children }) => {
 
   const editProject = (data) => {
     api
-      .get(`projects/${data.id}`)
+      .patch(`projects/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
