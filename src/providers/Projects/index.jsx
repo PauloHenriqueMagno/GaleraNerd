@@ -1,5 +1,5 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const ProjectsContext = createContext();
 
@@ -28,8 +28,8 @@ export const ProjectsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const createProject = (data) => {
-    api
+  const createProject = async (data) => {
+    await api
       .post("projects", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -45,3 +45,5 @@ export const ProjectsProvider = ({ children }) => {
     </ProjectsContext.Provider>
   );
 };
+
+export const useProjects = () => useContext(ProjectsContext);
