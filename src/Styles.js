@@ -6,6 +6,7 @@ const theme = extendTheme({
       2: "#4630AB",
       3: "#38085C",
       4: "#190429",
+      5: "#332477",
     },
     black: {
       1: "#111111",
@@ -19,6 +20,7 @@ const theme = extendTheme({
       2: "#9E9EA7",
       3: "#F5F5F5",
       4: "#F6F6F7",
+      5: "#D4D4D4",
     },
     success: "#25D970",
     error: "#DF1545",
