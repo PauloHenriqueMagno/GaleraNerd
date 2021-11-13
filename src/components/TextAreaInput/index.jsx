@@ -21,7 +21,11 @@ const TextAreaInput = ({
         _placeholder={{ color: "grey.2" }}
         rows="7"
       />
-      {!!errorMessage && <Text>{errorMessage}</Text>}
+      {!!errorMessage && (
+        <Text fontSize="12px" color="error" marginTop="12px">
+          {errorMessage}
+        </Text>
+      )}
     </>
   );
 };
