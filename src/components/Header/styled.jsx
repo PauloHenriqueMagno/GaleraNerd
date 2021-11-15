@@ -72,7 +72,6 @@ export const UserIconStyle = (logged = true) => {
 
 export const Header = chakra("header", {
     baseStyle: {
-        width: "100vw",
         height: "60px",
         borderBottom: `1px solid ${theme.colors.grey[3]}`,
         display: "flex",

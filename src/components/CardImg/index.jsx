@@ -2,7 +2,7 @@ import { Box, Imagen } from "@chakra-ui/react";
 
 const CardImg = ({ children }) => {
   return (
-    <Box p="4" bg="purple.5" borderRadius="lg" w="130px" mb="8">
+    <Box p="6" w="fit-content" bg="purple.6" borderRadius="lg" mb="8">
       {children}
     </Box>
   )
