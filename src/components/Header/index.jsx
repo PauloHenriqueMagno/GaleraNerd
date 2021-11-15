@@ -24,13 +24,12 @@ import {
     MenuList,
     MenuItem
 } from "@chakra-ui/react";
-import theme from "../../Styles";
 
 const HeaderComponent = () => {
     const [isOpen, setIsOpen] = useState("");
     const { userInfo } = useContext(UserContext);
 
-    const connected = (userInfo === {} ? true : false);
+    const connected = (userInfo === {} ? false : true );
     
     const history = useHistory();
 
@@ -64,7 +63,7 @@ const HeaderComponent = () => {
                         Criar Conta
                     </Button>
                     <Button
-                        color={theme.colors.purple[2]}
+                        color="purple.2"
                         onClick={()=> history.push("/services")}
                     >
                         Serviços
@@ -75,7 +74,7 @@ const HeaderComponent = () => {
                         logged={!connected}
                     >
                         <UserMenuIcon>
-                            <ProfileIcon color={theme.colors.white} />
+                            <ProfileIcon color="white" />
                         </UserMenuIcon>
                         <div>
                             <p>Ir para meu perfil</p>
@@ -86,7 +85,7 @@ const HeaderComponent = () => {
                         logged={!connected}
                     >
                         <UserMenuIcon variant="error">
-                            <LogOutIcon color={theme.colors.white} />
+                            <LogOutIcon color="white" />
                         </UserMenuIcon>
                         <div>
                             <p>Sair da minha conta</p>
@@ -97,7 +96,7 @@ const HeaderComponent = () => {
                         <MenuButton
                             sx={UserIconStyle(!connected)}
                         >
-                            <UserIcon color={theme.colors.grey[1]} />
+                            <UserIcon color="grey.1" />
                         </MenuButton>
                         <MenuList>
                             <MenuItem>
@@ -111,7 +110,7 @@ const HeaderComponent = () => {
                             </MenuItem>
                             <MenuItem>
                                 <UserMenuIcon variant="error">
-                                    <LogOutIcon color={theme.colors.white} />
+                                    <LogOutIcon color="white" />
                                 </UserMenuIcon>
                                 <div>
                                     <p>Sair da minha conta</p>
