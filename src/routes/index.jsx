@@ -11,7 +11,8 @@ const Routes = () => {
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/devsList/:category"></Route>
+      <Route path="/devsList/:category">
+      </Route>
       <Route path="/">
       </Route>
     </Switch>
