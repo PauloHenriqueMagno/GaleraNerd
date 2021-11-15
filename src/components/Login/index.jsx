@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../providers/User";
-import { useContext } from "react";
+import { Component, useContext } from "react";
 
 import { InputGroup, InputLeftElement } from "@chakra-ui/input";
 import style from "./styles";
@@ -51,38 +51,23 @@ const ComponentLogin = () => {
           isInvalid={errors.email?.message && errors.password?.message}
           className="theRealForm"
         >
-          <FormLabel>Login</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              children={<EmailIcon className="emailInputIcon" />}
-            />
-            <ComponentInput
-              errorBorderColor="crimson"
-              className="emailInput"
-              placeholder="Digite seu login"
-              variant="filled"
-              register={register}
-              registerName="email"
-            />
-          </InputGroup>
-          <FormHelperText>{errors.email?.message}</FormHelperText>
-          <FormLabel>Senha</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              children={<LockIcon className="passwordInputIcon" />}
-            />
-            <ComponentInput
-              errorBorderColor="crimson"
-              id="none"
-              className="passwordInput"
-              type="password"
-              placeholder="Digite sua senha"
-              register={register}
-              variant="outline"
-              registerName="password"
-            />
-          </InputGroup>
-          <FormHelperText>{errors.password?.message}</FormHelperText>
+          <ComponentInput
+            errorMessage={errors.email?.message}
+            labelMessage="E-mail"
+            leftIcon={<EmailIcon />}
+            placeholderMessage="Digite seu login"
+            register={register}
+            registerName={"email"}
+          />
+          <ComponentInput
+            errorMessage={errors.password?.message}
+            labelMessage="Senha"
+            leftIcon={<LockIcon />}
+            rightIcon={<LockIcon />}
+            placeholderMessage="Digite sua senha"
+            register={register}
+            registerName={"password"}
+          />
           <Button type="submit">Entrar</Button>
           <p>Ainda não tem uma conta?</p>
           <p className="toRegister" onClick={() => history.push("/register")}>
