@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
-        res.data.user.dev ? history.push("dev") : history.push("user")
+        res.data.user.dev ? history.push("/dev") : history.push("/user")
       })
       .catch((err) => console.log(err));
   };
