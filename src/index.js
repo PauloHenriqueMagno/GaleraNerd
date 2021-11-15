@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
 import { BrowserRouter } from "react-router-dom";
 import Provider from "./providers";
@@ -11,13 +11,13 @@ import theme from "./Styles";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider>
         <ChakraProvider theme={theme}>
           <App />
         </ChakraProvider>
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

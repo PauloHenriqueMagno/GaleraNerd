@@ -5,17 +5,10 @@ import { useHistory } from "react-router";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
+import { FormControl } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../providers/User";
-import { Component, useContext } from "react";
-
-import { InputGroup, InputLeftElement } from "@chakra-ui/input";
+import { useContext } from "react";
 import style from "./styles";
 
 const ComponentLogin = () => {
@@ -36,9 +29,6 @@ const ComponentLogin = () => {
 
   const submitForm = (data) => {
     login(data);
-    JSON.parse(localStorage.getItem("galeranerd/user")).dev
-      ? history.push("/dev-profile")
-      : history.push("/user-profile");
   };
 
   return (
