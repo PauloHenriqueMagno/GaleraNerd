@@ -25,6 +25,7 @@ const theme = extendTheme({
     success: "#25D970",
     error: "#DF1545",
     white: "#FFFFFF",
+    yellow: "#FED253",
   },
   breakpoints: { mobile: 0, desktop: 769 },
 });
