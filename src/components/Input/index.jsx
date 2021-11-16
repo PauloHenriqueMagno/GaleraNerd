@@ -19,13 +19,15 @@ const ComponentInput = ({
   return (
     <InputGroup sx={style}>
       {labelMessage && <FormLabel>{labelMessage}</FormLabel>}
-      <Box>
+      <Box className="inputContainer">
         {leftIcon && <InputLeftElement children={leftIcon} />}
         <Input
+          pl={leftIcon? "35px" : "5px"}
+          pr={rightIcon? "35px" : "5px"}
           errorBorderColor="error"
           placeholder={placeholderMessage}
           variant="filled"
-          {...register(registerName)}
+          {...(register && { ...register(registerName) })}
           {...rest}
         />
         {rightIcon && <InputRightElement children={rightIcon} />}

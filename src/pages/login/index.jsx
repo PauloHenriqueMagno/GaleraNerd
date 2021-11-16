@@ -4,6 +4,7 @@ import style from "./styles";
 import LoginSVG from "../../assets/loginSVG";
 import { useState } from "react";
 import ReturnButton from "../../components/ReturnButton";
+import DevForm from "../../components/DevForm";
 
 const Login = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -21,6 +22,7 @@ const Login = () => {
         )}
         <Box className="loginForm">
           <ComponentLogin />
+          <DevForm />
         </Box>
       </Box>
     </Box>
