@@ -52,19 +52,19 @@ const HeaderComponent = () => {
                 <UserMenuNav sx={(isOpen!== "" && MenuNav)}>
                     <Button
                         logged={connected}
-                        onClick={()=> history.push("/login")}
+                        click={()=> history.push("/login")}
                     >
                         Entrar
                     </Button>
                     <Button
                         logged={connected}
-                        onClick={()=> history.push("/register")}
+                        click={()=> history.push("/register")}
                     >
                         Criar Conta
                     </Button>
                     <Button
                         color="purple.2"
-                        onClick={()=> history.push("/services")}
+                        click={()=> history.push("/services")}
                     >
                         Serviços
                     </Button>
