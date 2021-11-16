@@ -2,26 +2,13 @@ import { Box, Heading } from "@chakra-ui/layout";
 import ComponentInput from "../Input/index";
 import { Button } from "@chakra-ui/button";
 import Select from "react-select";
-import { useState } from "react";
-import * as yup from "yup";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { DevContext } from "../../providers/Dev";
+import TextAreaInput from "../TextAreaInput";
 
 const DevForm = () => {
-  const servicesSchema = yup.object().shape({
-    value: yup.string(),
-    label: yup.string(),
-  });
+  const { devRegister } = useContext(DevContext);
 
-  const formSchema = yup.object().shape({
-    linkedin: yup.string().required(),
-    services: yup.mixed(),
-  });
-
-  const {
-    register,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
   const options = [
     { value: "appDevelopment", label: "Desenvolvimento de Aplicativos" },
     { value: "instWebsite", label: "Website institucional" },
@@ -31,8 +18,7 @@ const DevForm = () => {
     { value: "consult", label: "Consultoria" },
   ];
 
-  const userEmail =
-    JSON.parse(localStorage.getItem("galeranerd/user")).email || "";
+  const userInfo = JSON.parse(localStorage.getItem("galeranerd/user")) || "";
 
   const [linkedin, setLinkedin] = useState("");
   const [gitHub, setGitHub] = useState("");
@@ -41,69 +27,106 @@ const DevForm = () => {
   const [tecnologyList, setTecnologyList] = useState("");
   const [about, setAbout] = useState("");
   const data = {
-    contacts: { linkedin, gitHub, userEmail },
-    price: price,
+    userId: userInfo.id,
+    bio: about,
+    contacts: { linkedin, gitHub, email: userInfo.email },
     services: services.map((i) => i.label),
-    tecnologyList: tecnologyList,
-    about: about,
+    hourValue: `R$ ${price}`,
+    // tecnologyList: tecnologyList,
   };
   const onSelectChange = (value) => {
     setServices(value);
-    console.log(value);
+    console.log(services);
+    return services;
   };
 
   const registerDev = () => {
-    // data.services.length > 0 ?
+    if (data.services.length > 0 && price > 0) {
+      console.log("cadastro concluído com sucesso");
+      return devRegister(data);
+    } else {
+      console.log("preço e serviços são obrigatórios");
+    }
   };
-  const methods = useForm();
-  const { handleSubmit } = methods;
-  const submitHandler = (deita) => {
-    console.log(deita)
-  }
   return (
-    <Box>
-      <Heading color="black" backgroundColor="white">
+    <Box
+      sx={{
+        width: "200%",
+        display: "flex",
+        flexDirection: "column",
+        border: "black solid 2px",
+        borderRadius: "5px",
+        backgroundColor: "white",
+        input: {
+          bgColor: "grey.4",
+          m: "4px 0",
+          "::placeholder": {
+            color: "black",
+          },
+        },
+      }}
+    >
+      <Heading as="h2" sx={{ m: 5 }} color="black">
         Complete seu cadastro
       </Heading>
-      <form onSubmit={handleSubmit(submitHandler)}>
-        <ComponentInput
-          register={register}
-          registerName="linkedin"
-          value={linkedin}
-          onChange={(e) => setLinkedin(e.target.value)}
-          placeholderMessage="Linkedin"
-        />
-        <ComponentInput
-          value={gitHub}
-          onChange={(e) => setGitHub(e.target.value)}
-          placeholderMessage="Github"
-        />
+      <form>
+        <Box
+          sx={{
+            p: 5,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ width: "90%" }}>
+            <ComponentInput
+              value={linkedin}
+              onChange={(e) => setLinkedin(e.target.value)}
+              placeholderMessage="Linkedin"
+            />
+            <ComponentInput
+              value={gitHub}
+              onChange={(e) => setGitHub(e.target.value)}
+              placeholderMessage="Github"
+            />
 
-        <ComponentInput
-          placeholderMessage="R$ 20,00"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          type="number"
-        />
-        <Controller as={Select} control={methods.control} options={options} />
-
-        <Select
-          options={options}
-          isMulti
-          closeMenuOnSelect={false}
-          onChange={onSelectChange}
-        />
-        <ComponentInput
-          value={tecnologyList}
-          onChange={(e) => setTecnologyList(e.target.value)}
-          placeholderMessage="Ex: HTML,JS,CSS..."
-        />
-        <ComponentInput
-          value={about}
-          onChange={(e) => setAbout(e.target.value)}
-          placeholderMessage="Fale mais sobre você aqui..."
-        />
-        <Button onClick={() => console.log(data)}>Enviar</Button>
+            <ComponentInput
+              placeholderMessage="R$ 20,00"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              type="number"
+            />
+            <Box sx={{ width: "90%" }}>
+              <Select
+                options={options}
+                isMulti
+                closeMenuOnSelect={false}
+                onChange={onSelectChange}
+              />
+            </Box>
+            <ComponentInput
+              value={tecnologyList}
+              onChange={(e) => setTecnologyList(e.target.value)}
+              placeholderMessage="Ex: HTML,JS,CSS..."
+            />
+          </Box>
+          <Box sx={{ width: "90%", height: "100%" }}>
+            <TextAreaInput
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+              placeholder="Fale mais sobre você aqui..."
+              register={() => {}}
+            />
+          </Box>
+        </Box>
+        <Button
+          sx={{ bgColor: "purple.2", width: "80%", transform: "translate(-50%)", left:"50%" }}
+          onClick={() => {
+            devRegister(data);
+          }}
+        >
+          Enviar
+        </Button>
       </form>
     </Box>
   );

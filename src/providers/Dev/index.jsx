@@ -1,9 +1,11 @@
 import api from "../../services";
 import { createContext, useState } from "react";
+import { useHistory } from "react-router";
 
 export const DevContext = createContext();
 
 export const DevProvider = ({ children }) => {
+  const history = useHistory()
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("galeranerd/token")) || ""
   );
@@ -34,14 +36,8 @@ export const DevProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
-        setToken(res.data.accessToken);
-        setUserInfo(res.data.user);
-        localStorage.setItem(
-          "galeranerd/token",
-          JSON.stringify(res.data.accessToken)
-        );
-        localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
+        console.log("api response:", res);
+        history.pushState("dev")
       })
       .catch((err) => console.log(err));
   };
