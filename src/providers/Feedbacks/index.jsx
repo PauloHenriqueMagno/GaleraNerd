@@ -1,5 +1,5 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const FeedbackContext = createContext();
 
@@ -21,7 +21,9 @@ export const FeedbackProvider = ({ children }) => {
   };
   const getFeedbacks = () => {
     api
-      .get("feedbacks")
+      .get("feedbacks", {
+        headers: { Authorization: `bearer: ${token}` },
+      })
       .then((res) => setFeedbackList(res.data))
       .catch((err) => console.log(err));
   };
@@ -29,20 +31,19 @@ export const FeedbackProvider = ({ children }) => {
   const createFeedback = (data) => {
     api
       .post("feedbacks", data, {
-        headers: { Authorization: `bearer: ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then()
       .catch();
   };
 
   const editFeedback = (data) => {
-    getDevId();
     api
-      .post(`feedbacks/${devId}`, data, {
-        headers: { Authorization: `bearer: ${token}` },
+      .patch(`feedbacks/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then()
-      .catch();
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -53,3 +54,5 @@ export const FeedbackProvider = ({ children }) => {
     </FeedbackContext.Provider>
   );
 };
+
+export const useFeedbacks = () => useContext(FeedbackContext);
