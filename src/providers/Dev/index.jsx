@@ -1,5 +1,5 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const DevContext = createContext();
 
@@ -54,3 +54,5 @@ export const DevProvider = ({ children }) => {
     </DevContext.Provider>
   );
 };
+
+export const useDev = () => useContext(DevContext);

@@ -12,6 +12,15 @@ export const UserProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("galeranerd/user")) || {}
   );
 
+  const [usersList, setUserslist] = useState([]);
+
+  const getUsersList = () => {
+    api
+      .get("users")
+      .then((response) => setUserslist(response.data))
+      .catch((err) => console.log(err));
+  };
+
   const login = (data) => {
     api
       .post("signin", data)
@@ -24,7 +33,7 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
-        res.data.user.dev ? history.push("/dev") : history.push("/user")
+        res.data.user.dev ? history.push("/dev") : history.push("/user");
       })
       .catch((err) => console.log(err));
   };
@@ -52,7 +61,17 @@ export const UserProvider = ({ children }) => {
     setUserInfo({});
   };
   return (
-    <UserContext.Provider value={{ login, register, logOut, userInfo, token }}>
+    <UserContext.Provider
+      value={{
+        login,
+        register,
+        logOut,
+        userInfo,
+        token,
+        usersList,
+        getUsersList,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
