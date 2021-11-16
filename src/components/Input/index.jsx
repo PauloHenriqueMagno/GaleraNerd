@@ -22,6 +22,8 @@ const ComponentInput = ({
       <Box>
         {leftIcon && <InputLeftElement children={leftIcon} />}
         <Input
+          pl={leftIcon? "35px" : "5px"}
+          pr={rightIcon? "35px" : "5px"}
           errorBorderColor="error"
           placeholder={placeholderMessage}
           variant="filled"
