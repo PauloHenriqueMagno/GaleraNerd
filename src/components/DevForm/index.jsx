@@ -30,9 +30,9 @@ const DevForm = () => {
     userId: userInfo.id,
     bio: about,
     contacts: { linkedin, gitHub, email: userInfo.email },
-    services: services.map((i) => i.label),
-    hourValue: `R$ ${price}`,
-    // tecnologyList: tecnologyList,
+    categories: services.map((i) => i.label),
+    hourValue: price,
+    services: tecnologyList,
   };
   const onSelectChange = (value) => {
     setServices(value);
@@ -41,13 +41,14 @@ const DevForm = () => {
   };
 
   const registerDev = () => {
-    if (data.services.length > 0 && price > 0) {
+    if (data.categories.length > 0 && price > 0) {
       console.log("cadastro concluído com sucesso");
       return devRegister(data);
     } else {
       console.log("preço e serviços são obrigatórios");
     }
   };
+  
   return (
     <Box
       sx={{
@@ -80,21 +81,22 @@ const DevForm = () => {
         >
           <Box sx={{ width: "90%" }}>
             <ComponentInput
-              value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
               placeholderMessage="Linkedin"
             />
             <ComponentInput
-              value={gitHub}
               onChange={(e) => setGitHub(e.target.value)}
               placeholderMessage="Github"
             />
 
             <ComponentInput
               placeholderMessage="R$ 20,00"
-              value={price}
               onChange={(e) => setPrice(e.target.value)}
               type="number"
+            />
+            <ComponentInput
+              onChange={(e) => setTecnologyList(e.target.value)}
+              placeholderMessage="Ex: HTML,JS,CSS..."
             />
             <Box sx={{ width: "90%" }}>
               <Select
@@ -104,15 +106,10 @@ const DevForm = () => {
                 onChange={onSelectChange}
               />
             </Box>
-            <ComponentInput
-              value={tecnologyList}
-              onChange={(e) => setTecnologyList(e.target.value)}
-              placeholderMessage="Ex: HTML,JS,CSS..."
-            />
           </Box>
           <Box sx={{ width: "90%", height: "100%" }}>
             <TextAreaInput
-              value={about}
+              rows="8"
               onChange={(e) => setAbout(e.target.value)}
               placeholder="Fale mais sobre você aqui..."
               register={() => {}}
@@ -120,9 +117,15 @@ const DevForm = () => {
           </Box>
         </Box>
         <Button
-          sx={{ bgColor: "purple.2", width: "80%", transform: "translate(-50%)", left:"50%" }}
+          sx={{
+            bgColor: "purple.2",
+            width: "80%",
+            transform: "translate(-50%)",
+            left: "50%",
+          }}
           onClick={() => {
-            devRegister(data);
+            console.log(data);
+            registerDev();
           }}
         >
           Enviar
