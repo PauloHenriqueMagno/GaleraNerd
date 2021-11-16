@@ -1,4 +1,4 @@
-html,body,header,main,footer,section,aside,div,form,ul,ol,li,h1,h2,h3,h4,h5,h6,p,a,button,input,img,svg{
+html,body,header,main,footer,section,aside,nav,div,form,ul,ol,li,h1,h2,h3,h4,h5,h6,p,a,button,input,img,svg{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,7 +8,7 @@ html,body,header,main,footer,section,aside,div,form,ul,ol,li,h1,h2,h3,h4,h5,h6,p
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

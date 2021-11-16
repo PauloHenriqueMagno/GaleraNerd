@@ -5,24 +5,20 @@ import { useHistory } from "react-router";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  // FormHelperText,
-} from "@chakra-ui/react";
+import { FormControl } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../providers/User";
 import { useContext } from "react";
-
-import { InputGroup, InputLeftElement } from "@chakra-ui/input";
 import style from "./styles";
 
 const ComponentLogin = () => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup.string().required("Campo obrigatório").email(),
+    email: yup
+      .string()
+      .required("Campo obrigatório")
+      .email("Insira um email válido"),
     password: yup.string().required("Campo obrigatório"),
   });
   const {
@@ -32,12 +28,7 @@ const ComponentLogin = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const submitForm = (data) => {
-    console.log(data);
-    login(data)
-
-    // data.user.dev
-    //   ? history.push("/dev-profile")
-    //   : history.push("/user-profile");
+    login(data);
   };
 
   return (
@@ -46,40 +37,31 @@ const ComponentLogin = () => {
         <strong>Bem vindo!</strong>
       </h1>
       <form onSubmit={handleSubmit(submitForm)}>
-        <FormControl className="theRealForm">
-          <FormLabel>Login</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              children={<EmailIcon className="emailInputIcon" />}
-            />
-            <ComponentInput
-              className="emailInput"
-              placeholder="Digite seu login"
-              register={register}
-              variant="filled"
-              registerName="email"
-            />
-          </InputGroup>
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-          <FormLabel>Senha</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              children={<LockIcon className="passwordInputIcon" />}
-            />
-            <ComponentInput
-              id="none"
-              className="passwordInput"
-              type="password"
-              placeholder="Digite sua senha"
-              register={register}
-              variant="outline"
-              registerName="password"
-            />
-          </InputGroup>
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        <FormControl
+          isInvalid={errors.email?.message && errors.password?.message}
+          className="theRealForm"
+        >
+          <ComponentInput
+            errorMessage={errors.email?.message}
+            labelMessage="E-mail"
+            leftIcon={<EmailIcon />}
+            placeholderMessage="Digite seu login"
+            register={register}
+            registerName={"email"}
+          />
+          <ComponentInput
+            errorMessage={errors.password?.message}
+            labelMessage="Senha"
+            leftIcon={<LockIcon />}
+            rightIcon={<LockIcon />}
+            placeholderMessage="Digite sua senha"
+            register={register}
+            registerName={"password"}
+          />
           <Button type="submit">Entrar</Button>
+          <p>Ainda não tem uma conta?</p>
           <p className="toRegister" onClick={() => history.push("/register")}>
-            Ainda não tem uma conta? Crie uma agora
+            Crie uma agora!
           </p>
         </FormControl>
       </form>
