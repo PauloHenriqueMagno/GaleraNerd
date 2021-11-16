@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { categoryList } from "./CategoryData";
 import CategoryCard from "../CategoryCard";
 import { useHistory } from "react-router-dom";
@@ -11,13 +11,11 @@ const CategoryCardList = () => {
   };
 
   return (
-    <Grid
-      templateColumns={{ mobile: "repeat(1, 1fr)", desktop: "repeat(3, 1fr)" }}
-      rowGap="50px"
-      columnGap="30px"
+    <Flex
       w="100%"
       margin="0 auto"
-      justifyItems="center"
+      justifyContent="space-around"
+      flexWrap="wrap"
     >
       {categoryList.map((cardOnList) => (
         <CategoryCard
@@ -26,7 +24,7 @@ const CategoryCardList = () => {
           action={() => selectCategory(cardOnList.title)}
         />
       ))}
-    </Grid>
+    </Flex>
   );
 };
 
