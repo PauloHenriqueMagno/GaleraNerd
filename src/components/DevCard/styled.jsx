@@ -1,17 +1,16 @@
 import { chakra } from "@chakra-ui/react";
 
-export const DevCardLi = chakra("li", {
+export const DevCardLi = chakra("div", {
   baseStyle: {
     borderWidth: "2px",
     borderStyle: "solid",
     borderColor: "grey.5",
-    padding: "25px 5px",
+    padding: "30px",
     fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: "20px",
     background: "white",
-
     svg: {
       fontSize: "30px",
     },
@@ -39,6 +38,7 @@ export const DevCardHeaderDiv = chakra("div", {
     justifyContent: "space-between",
     width: "100%",
     gap: "5px",
+    color: "black",
 
     p: {
       color: "purple.2",
@@ -68,6 +68,8 @@ export const DevCardBody = chakra("body", {
     color: "black.2",
     padding: "15px 5px 0",
     gap: "15px",
+    backgroundColor: "white",
+    fontSize: "14px",
   },
 });
 
@@ -91,8 +93,8 @@ export const DevCardTag = (text) => {
       padding: "5px 10px",
       background: "rgba(70, 48, 171, 0.2)",
       color: "purple.2",
-      fontWeight: 500,
-      fontSize: "15px",
+      fontWeight: "medium",
+      fontSize: "10px",
     },
   });
 
