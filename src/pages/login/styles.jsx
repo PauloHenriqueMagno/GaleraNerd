@@ -25,7 +25,7 @@ const style = {
     fontSize: "27px",
     position: "absolute",
     m: 25,
-    bottom: 0
+    bottom: { mobile: "", desktop: 0 },
   },
 };
 

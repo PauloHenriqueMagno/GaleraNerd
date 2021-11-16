@@ -1,5 +1,5 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const ProjectsContext = createContext();
 
@@ -23,13 +23,15 @@ export const ProjectsProvider = ({ children }) => {
 
   const editProject = (data) => {
     api
-      .get(`projects/${data.id}`)
+      .patch(`projects/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
-  const createProject = (data) => {
-    api
+  const createProject = async (data) => {
+    await api
       .post("projects", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -45,3 +47,5 @@ export const ProjectsProvider = ({ children }) => {
     </ProjectsContext.Provider>
   );
 };
+
+export const useProjects = () => useContext(ProjectsContext);

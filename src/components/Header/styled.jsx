@@ -3,7 +3,6 @@ import {
     keyframes,
     Menu
 } from "@chakra-ui/react"
-import theme from "../../Styles";
 
 const close = keyframes`
     0% {
@@ -72,9 +71,11 @@ export const UserIconStyle = (logged = true) => {
 
 export const Header = chakra("header", {
     baseStyle: {
-        width: "100vw",
+        width: "100%",
         height: "60px",
-        borderBottom: `1px solid ${theme.colors.grey[3]}`,
+        borderBottom: "1px solid",
+        borderBottomColor: "grey.3",
+        background: "white",
         display: "flex",
         flexDirection: "row",
         position: "sticky",
@@ -118,7 +119,7 @@ export const MenuUser = chakra("button", {
 
 export const UserMenuNav = chakra("nav", {
     baseStyle: {
-        background: "#FFFFFF",
+        background: "white",
         display: "none",
         alignItems: "center",
         flexDirection: "column",
@@ -136,7 +137,7 @@ export const UserMenuNav = chakra("nav", {
         },
         
         span: {
-            color: theme.colors.grey[2],
+            color: "grey.2",
             fontSize: "12px",
         },
         
@@ -153,14 +154,14 @@ export const UserMenuNav = chakra("nav", {
             p: {
                 fontWeight: 700,
                 fontSize: "18px",
-                color: theme.colors.black[1],
+            color: "black.1",
             },
         },
     },
     
 });
 
-export const Button = ({children, device = "all", logged = true, color = theme.colors.grey[1]}) => {
+export const Button = ({children, device = "all", logged = true, color = "grey.1", click}) => {
     const display = (type) => {
         const mod = device === type? "flex": device === "all"? "flex": "none";
         const isLogged = logged? "flex": "none";
@@ -192,12 +193,12 @@ export const Button = ({children, device = "all", logged = true, color = theme.c
             p: {
                 fontWeight: "600",
                 fontSize: "20px",
-                color: theme.colors.grey[1],
+                color: "grey.1",
             },
 
             "@media (max-width: 768px)": {
                 display: display("mobile"),
-                border: `1px solid ${theme.colors.purple[2]}`,
+                border: `1px solid purple.2`,
                 padding: "15px",
                 fontSize: "20px",
                 width: "90%",
@@ -211,7 +212,7 @@ export const Button = ({children, device = "all", logged = true, color = theme.c
         },
     });
 
-    return <Element>{children}</Element>
+    return <Element onClick={click}>{children}</Element>
 }
 
 export const UserMenu = chakra(Menu, {
@@ -230,7 +231,7 @@ export const UserMenuIcon = ({children, variant}) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: (variant==="error" ? theme.colors.error : theme.colors.purple[2]),
+            background: (variant==="error" ? "error" : "purple.2"),
             borderRadius: "7px",
 
             svg: {

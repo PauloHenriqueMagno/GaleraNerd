@@ -16,6 +16,7 @@ const CategoryCard = ({ category, action }) => {
       _hover={{ borderColor: "purple.2" }}
       onClick={action}
       key={id}
+      margin={{ mobile: "15px 0", desktop: "40px 0" }}
     >
       <Flex direction="column">
         <Flex

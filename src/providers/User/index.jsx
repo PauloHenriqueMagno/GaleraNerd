@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
+        res.data.user.dev ? history.push("/dev") : history.push("/user")
       })
       .catch((err) => console.log(err));
   };
@@ -43,7 +44,7 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
-  
+
   const logOut = () => {
     localStorage.clear();
     history.push("/");
@@ -51,8 +52,10 @@ export const UserProvider = ({ children }) => {
     setUserInfo({});
   };
   return (
-    <UserContext.Provider value={{ login, register, logOut }}>
+    <UserContext.Provider value={{ login, register, logOut, userInfo, token }}>
       {children}
     </UserContext.Provider>
   );
 };
+
+export const useUser = () => useContext(UserContext);
