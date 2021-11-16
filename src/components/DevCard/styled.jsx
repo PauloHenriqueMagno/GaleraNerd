@@ -2,6 +2,7 @@ import { chakra } from "@chakra-ui/react";
 
 export const DevCardLi = chakra("div", {
   baseStyle: {
+    margin: "20px 0",
     borderWidth: "2px",
     borderStyle: "solid",
     borderColor: "grey.5",
@@ -38,7 +39,7 @@ export const DevCardHeaderDiv = chakra("div", {
     justifyContent: "space-between",
     width: "100%",
     gap: "5px",
-    color: "black",
+    color: "black.1",
 
     p: {
       color: "purple.2",
@@ -60,7 +61,7 @@ export const DevCardHeaderDevIcon = chakra("div", {
   },
 });
 
-export const DevCardBody = chakra("body", {
+export const DevCardBody = chakra("div", {
   baseStyle: {
     display: "flex",
     flexDirection: "column",
