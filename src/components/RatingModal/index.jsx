@@ -18,8 +18,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { FaFileAlt } from "react-icons/fa";
 import StarRating from "../StarRating";
+import { useFeedbacks } from "../../providers/Feedbacks";
+import { useEffect } from "react";
+import { useUser } from "../../providers/User";
 
-const RatingModal = ({ isOpen, onOpen, onClose, projectId }) => {
+const RatingModal = ({ isOpen, onClose, devId }) => {
+  const { userInfo } = useUser();
+  const { feedbackList, getFeedbacks, editFeedback } = useFeedbacks();
+
   const modalSchema = yup.object().shape({
     attendance: yup
       .mixed("É necessário avaliar o dev.")
@@ -43,16 +49,41 @@ const RatingModal = ({ isOpen, onOpen, onClose, projectId }) => {
   } = useForm({ resolver: yupResolver(modalSchema) });
 
   const submitBudget = (data) => {
-    console.log(data);
-    // const requestData = {};
-    // onClose();
-    // resetField("");
+    const devFeedbacks = feedbackList.filter(
+      (feedback) => feedback.devId === devId
+    );
+
+    devFeedbacks[0].attendance.push({
+      userId: userInfo.id,
+      attendance: Number(data.attendance),
+    });
+    devFeedbacks[0].price.push({
+      userId: userInfo.id,
+      price: Number(data.price),
+    });
+    devFeedbacks[0].recommendation.push({
+      userId: userInfo.id,
+      recommendation: Number(data.recommendation),
+    });
+    devFeedbacks[0].comment.push({
+      userId: userInfo.id,
+      comment: data.comment,
+    });
+
+    editFeedback(devFeedbacks[0]);
+    onClose();
+    resetField("");
   };
 
   const submitCancel = () => {
     onClose();
     resetField("");
   };
+
+  useEffect(() => {
+    getFeedbacks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={submitCancel}>
