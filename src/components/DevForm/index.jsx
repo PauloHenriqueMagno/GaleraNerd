@@ -42,13 +42,10 @@ const DevForm = () => {
 
   const registerDev = () => {
     if (data.categories.length > 0 && price > 0) {
-      console.log("cadastro concluído com sucesso");
       return devRegister(data);
-    } else {
-      console.log("preço e serviços são obrigatórios");
     }
   };
-  
+
   return (
     <Box
       sx={{
