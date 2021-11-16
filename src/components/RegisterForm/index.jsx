@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "../../providers/User";
 import { useHistory } from "react-router-dom";
 
-import { FormControl, Box, Heading, VStack, Button, Checkbox } from "@chakra-ui/react";
+import { FormControl, Box, Heading, VStack, Button, Checkbox, Text } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { FaUserAlt } from "react-icons/fa";
 import Input from "../Input";
@@ -35,7 +35,8 @@ const RegisterForm = () => {
       mt="15px"
       as='form' 
       bg="white" 
-      border="3px solid gray" 
+      border="3px solid"
+      borderColor="purple.2"
       color="black" 
       minWidth="300px" 
       maxWidth="500px" 
@@ -81,7 +82,7 @@ const RegisterForm = () => {
           leftIcon={<LockIcon />}
         />
         <Checkbox size="lg" w="100%" border="black" colorScheme="purple" textaline="left" {...register("dev")} >
-          Quero trabalhar como desenvolvedor
+          Quero trabalhar como <Text color="purple.2" display="inline" >desenvolvedor</Text>
         </Checkbox>
         <Button bg="purple.2" color="white" w="100%" _hover={{backgroundColor: "purple.4"}} type="submit">
           Cadastrar

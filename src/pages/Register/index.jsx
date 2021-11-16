@@ -8,6 +8,7 @@ const Register = () => {
   const histori = useHistory();
   return (
     <Box
+      pb="8"
       minHeight="100vh" 
       bgGradient={{
         mobile: "linear(to-b, purple.2 35%, white 35%)",
