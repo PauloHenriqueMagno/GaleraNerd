@@ -3,20 +3,24 @@ import ComponentInput from "../Input/index";
 import { Button } from "@chakra-ui/button";
 import Select from "react-select";
 import { useState } from "react";
-
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const DevForm = () => {
+  const servicesSchema = yup.object().shape({
+    value: yup.string(),
+    label: yup.string(),
+  });
+
   const formSchema = yup.object().shape({
     linkedin: yup.string().required(),
-    services: yup.array()
+    services: yup.mixed(),
   });
 
   const {
     register,
-    handleSubmit,
+    formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
   const options = [
     { value: "appDevelopment", label: "Desenvolvimento de Aplicativos" },
@@ -26,6 +30,10 @@ const DevForm = () => {
     { value: "ecommerce", label: "E-commerce" },
     { value: "consult", label: "Consultoria" },
   ];
+
+  const userEmail =
+    JSON.parse(localStorage.getItem("galeranerd/user")).email || "";
+
   const [linkedin, setLinkedin] = useState("");
   const [gitHub, setGitHub] = useState("");
   const [price, setPrice] = useState(0);
@@ -33,25 +41,31 @@ const DevForm = () => {
   const [tecnologyList, setTecnologyList] = useState("");
   const [about, setAbout] = useState("");
   const data = {
-    linkedin: linkedin,
-    gitHub: gitHub,
+    contacts: { linkedin, gitHub, userEmail },
     price: price,
     services: services.map((i) => i.label),
     tecnologyList: tecnologyList,
     about: about,
   };
-  const consolelogdodata = (data) => {
-    console.log(data);
-  };
   const onSelectChange = (value) => {
     setServices(value);
+    console.log(value);
   };
+
+  const registerDev = () => {
+    // data.services.length > 0 ?
+  };
+  const methods = useForm();
+  const { handleSubmit } = methods;
+  const submitHandler = (deita) => {
+    console.log(deita)
+  }
   return (
     <Box>
       <Heading color="black" backgroundColor="white">
         Complete seu cadastro
       </Heading>
-      <form onSubmit={handleSubmit(consolelogdodata)}>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <ComponentInput
           register={register}
           registerName="linkedin"
@@ -71,13 +85,13 @@ const DevForm = () => {
           onChange={(e) => setPrice(e.target.value)}
           type="number"
         />
+        <Controller as={Select} control={methods.control} options={options} />
+
         <Select
-        {...register("services")}
-          defaultValue={services}
-          onChange={onSelectChange}
-          closeMenuOnSelect={false}
-          isMulti
           options={options}
+          isMulti
+          closeMenuOnSelect={false}
+          onChange={onSelectChange}
         />
         <ComponentInput
           value={tecnologyList}
@@ -89,9 +103,7 @@ const DevForm = () => {
           onChange={(e) => setAbout(e.target.value)}
           placeholderMessage="Fale mais sobre você aqui..."
         />
-        <Button type="submit" /* onClick={() => console.log(data)} */>
-          Enviar
-        </Button>
+        <Button onClick={() => console.log(data)}>Enviar</Button>
       </form>
     </Box>
   );

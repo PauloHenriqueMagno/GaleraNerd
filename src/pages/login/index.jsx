@@ -21,7 +21,7 @@ const Login = () => {
           </Box>
         )}
         <Box className="loginForm">
-          <ComponentLogin />
+          {/* <ComponentLogin /> */}
           <DevForm />
         </Box>
       </Box>
