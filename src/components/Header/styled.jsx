@@ -161,7 +161,7 @@ export const UserMenuNav = chakra("nav", {
     
 });
 
-export const Button = ({children, device = "all", logged = true, color = "grey.1"}) => {
+export const Button = ({children, device = "all", logged = true, color = "grey.1", click}) => {
     const display = (type) => {
         const mod = device === type? "flex": device === "all"? "flex": "none";
         const isLogged = logged? "flex": "none";
@@ -212,7 +212,7 @@ export const Button = ({children, device = "all", logged = true, color = "grey.1
         },
     });
 
-    return <Element>{children}</Element>
+    return <Element onClick={click}>{children}</Element>
 }
 
 export const UserMenu = chakra(Menu, {
