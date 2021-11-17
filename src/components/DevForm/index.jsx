@@ -5,7 +5,7 @@ import Select from "react-select";
 import { useContext, useState } from "react";
 import { DevContext } from "../../providers/Dev";
 import TextAreaInput from "../TextAreaInput";
-
+import { FormLabel } from "@chakra-ui/form-control";
 
 const DevForm = () => {
   const { devRegister } = useContext(DevContext);
@@ -127,6 +127,7 @@ const DevForm = () => {
               }}
               padding={{ mobile: "15" }}
             >
+              <FormLabel>O que você faz?</FormLabel>
               <Select
                 options={options}
                 isMulti
@@ -137,6 +138,7 @@ const DevForm = () => {
             </Box>
           </Box>
           <Box sx={{ width: "100%", height: "100%" }}>
+            <FormLabel>O que você faz?</FormLabel>
             <TextAreaInput
               rows="8"
               onChange={(e) => setAbout(e.target.value)}
