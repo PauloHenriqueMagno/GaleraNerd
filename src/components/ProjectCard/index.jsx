@@ -1,8 +1,8 @@
 import {
-    AccordionItemStyled,
-    AccordionButtonStyled,
-    AccordionPanelStyled,
-    ButtonStyled
+  AccordionItemStyled,
+  AccordionButtonStyled,
+  AccordionPanelStyled,
+  ButtonStyled,
 } from "./styled";
 
 import { AiFillCaretDown } from "react-icons/ai";
@@ -14,132 +14,145 @@ import { useProjects } from "../../providers/Projects";
 import RatingModal from "../RatingModal";
 import { Flex } from "@chakra-ui/react";
 
-const ProjectCard = ({id, devId, projectId, description, status, budget, dev = false}) => {
-    description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+const ProjectCard = ({
+  id,
+  devId,
+  projectId,
+  description,
+  status,
+  budget,
+  dev = false,
+  ...rest
+}) => {
+  description =
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-    const { editProject } = useProjects();
-    const [ name, setName ] = useState();
-    const [ Status, setStatus ] = useState(status);
-    const { onOpen, isOpen, onClose } = useDisclosure();
-    const [ isOpenRating, setIsOpenRating ] = useState(false)
+  const { editProject } = useProjects();
+  const [name, setName] = useState();
+  const [Status, setStatus] = useState(status);
+  const { onOpen, isOpen, onClose } = useDisclosure();
+  const [isOpenRating, setIsOpenRating] = useState(false);
 
-    const getName = () => {
-        api
-            .get(`/users/${id}`)
-            .then(response => setName(response.data.name));
+  const getName = () => {
+    api.get(`/users/${id}`).then((response) => setName(response.data.name));
+  };
+
+  const changeStatus = (close = false) => {
+    const data = {
+      id: projectId,
+      status: close
+        ? "Recusado"
+        : Status === "Aguardando orçamento"
+        ? "Confirmar o orçamento"
+        : Status === "Confirmar o orçamento"
+        ? "Em andamento"
+        : Status === "Em andamento"
+        ? "Concluido"
+        : "Finalizado",
     };
 
-    const changeStatus = (close = false) => {
-        const data = {
-            id: projectId,
-            status: (
-                close ? "Recusado" : (
-                Status === "Aguardando orçamento" ? "Confirmar o orçamento": (
-                Status === "Confirmar o orçamento" ? "Em andamento": (
-                Status === "Em andamento"? "Concluido" : "Finalizado"
-            )))),
-        };
+    setStatus(data.status);
+    editProject(data);
+  };
 
-        setStatus(data.status);
-        editProject(data);
-    };
-
-    const Buttons = () => {
-        if(!dev && Status === "Concluido"){
-            return <ButtonStyled onClick={()=> setIsOpenRating(true)}>Finalizar projeto e avaliar</ButtonStyled>
-        }
-        if(!dev && Status === "Confirmar o orçamento"){
-            return (
-                <Flex
-                    justifyContent="space-between"
-                >
-                    <ButtonStyled
-                        color="red"
-                        onClick={()=> changeStatus(true)}
-                    >
-                        Recusar
-                    </ButtonStyled>
-                    <ButtonStyled
-                        onClick={()=> changeStatus()}
-                        marginLeft="auto"
-                    >
-                        Aceitar orçamento
-                    </ButtonStyled>
-                </Flex>
-            )
-        }
-        if(!dev && Status === "Em andamento"){
-            return <ButtonStyled disabled={true} marginLeft="auto">Aguardando Nerd finalizar o projeto</ButtonStyled>
-        }
-        if(dev && Status === "Em andamento"){
-            return <ButtonStyled onClick={()=> changeStatus()} marginLeft="auto">Concluido</ButtonStyled>
-        }
-        if(dev && Status==="Aguardando orçamento"){
-            return (
-                <Flex
-                    justifyContent="space-between"
-                >
-                    <ButtonStyled
-                        color="red"
-                        onClick={()=> changeStatus(true)
-                    }>
-                        Recusar
-                    </ButtonStyled>
-                    <ButtonStyled
-                        onClick={()=> onOpen()}
-                        marginLeft="auto"
-                    >
-                        Fazer orçamento
-                    </ButtonStyled>
-                </Flex>
-            )
-        }
-        if(dev && Status === "Confirmar o orçamento"){
-            return <ButtonStyled disabled={true} marginLeft="auto" >Aguardando confirmação do cliente</ButtonStyled>
-        }else{
-            return <ButtonStyled disabled={true} marginLeft="auto">Pedido recusado</ButtonStyled>
-        }
+  const Buttons = () => {
+    if (!dev && Status === "Concluido") {
+      return (
+        <ButtonStyled onClick={() => setIsOpenRating(true)}>
+          Finalizar projeto e avaliar
+        </ButtonStyled>
+      );
     }
+    if (!dev && Status === "Confirmar o orçamento") {
+      return (
+        <Flex justifyContent="space-between">
+          <ButtonStyled color="red" onClick={() => changeStatus(true)}>
+            Recusar
+          </ButtonStyled>
+          <ButtonStyled onClick={() => changeStatus()} marginLeft="auto">
+            Aceitar orçamento
+          </ButtonStyled>
+        </Flex>
+      );
+    }
+    if (!dev && Status === "Em andamento") {
+      return (
+        <ButtonStyled disabled={true} marginLeft="auto">
+          Aguardando Nerd finalizar o projeto
+        </ButtonStyled>
+      );
+    }
+    if (dev && Status === "Em andamento") {
+      return (
+        <ButtonStyled onClick={() => changeStatus()} marginLeft="auto">
+          Concluido
+        </ButtonStyled>
+      );
+    }
+    if (dev && Status === "Aguardando orçamento") {
+      return (
+        <Flex justifyContent="space-between">
+          <ButtonStyled color="red" onClick={() => changeStatus(true)}>
+            Recusar
+          </ButtonStyled>
+          <ButtonStyled onClick={() => onOpen()} marginLeft="auto">
+            Fazer orçamento
+          </ButtonStyled>
+        </Flex>
+      );
+    }
+    if (dev && Status === "Confirmar o orçamento") {
+      return (
+        <ButtonStyled disabled={true} marginLeft="auto">
+          Aguardando confirmação do cliente
+        </ButtonStyled>
+      );
+    } else {
+      return (
+        <ButtonStyled disabled={true} marginLeft="auto">
+          Pedido recusado
+        </ButtonStyled>
+      );
+    }
+  };
 
-    useEffect(()=>{
-        getName();
+  useEffect(() => {
+    getName();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+  }, []);
 
-    return (
-        <AccordionItemStyled key={projectId} status={Status}>
-            <AccordionButtonStyled>
-                <h3>{name}</h3>
-                <p>{Status}</p>
-                <AiFillCaretDown />
-            </AccordionButtonStyled>
-            <AccordionPanelStyled className="ProjectDescription">
-                <p className="borderBottom">{description}</p>
+  return (
+    <AccordionItemStyled {...rest}  key={projectId} status={Status}>
+      <AccordionButtonStyled>
+        <h3>{name}</h3>
+        <p>{Status}</p>
+        <AiFillCaretDown />
+      </AccordionButtonStyled>
+      <AccordionPanelStyled className="ProjectDescription">
+        <p className="borderBottom">{description}</p>
 
-                <p>{budget}</p>
+        <p>{budget}</p>
 
-                <Buttons />
+        <Buttons />
 
-                {
-                    (dev || Status==="Aguardando orçamento") &&
-                    <BudgetModal 
-                        isOpen={isOpen}
-                        onClose={onClose}
-                        projectId={projectId}
-                    />
-                }
-                {
-                    !dev &&
-                    <RatingModal 
-                        isOpen={isOpenRating} 
-                        onClose={()=>setIsOpenRating(false)} 
-                        devId={devId}
-                    />
-                }
-            </AccordionPanelStyled>
-        </AccordionItemStyled>
-    );
+        {(dev || Status === "Aguardando orçamento") && (
+          <BudgetModal
+            isOpen={isOpen}
+            onClose={onClose}
+            projectId={projectId}
+          />
+        )}
+        {!dev && (
+          <RatingModal
+            isOpen={isOpenRating}
+            onClose={() => setIsOpenRating(false)}
+            devId={devId}
+          />
+        )}
+      </AccordionPanelStyled>
+    </AccordionItemStyled>
+  );
 };
 
 export default ProjectCard;
