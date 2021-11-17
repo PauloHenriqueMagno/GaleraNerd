@@ -5,6 +5,7 @@ import Select from "react-select";
 import { useContext, useState } from "react";
 import { DevContext } from "../../providers/Dev";
 import TextAreaInput from "../TextAreaInput";
+import { FormLabel } from "@chakra-ui/react";
 
 const DevForm = () => {
   const { devRegister } = useContext(DevContext);
@@ -34,9 +35,9 @@ const DevForm = () => {
     hourValue: price,
     services: tecnologyList,
   };
+
   const onSelectChange = (value) => {
     setServices(value);
-    console.log(services);
     return services;
   };
 
@@ -78,24 +79,29 @@ const DevForm = () => {
         >
           <Box sx={{ width: "90%" }}>
             <ComponentInput
+              labelMessage="Linkedin"
               onChange={(e) => setLinkedin(e.target.value)}
               placeholderMessage="Linkedin"
             />
             <ComponentInput
+              labelMessage="Github"
               onChange={(e) => setGitHub(e.target.value)}
               placeholderMessage="Github"
             />
 
             <ComponentInput
+              labelMessage="Valor/hora"
               placeholderMessage="R$ 20,00"
               onChange={(e) => setPrice(e.target.value)}
               type="number"
             />
             <ComponentInput
+              labelMessage="Quais tecnologias você usa?"
               onChange={(e) => setTecnologyList(e.target.value)}
               placeholderMessage="Ex: HTML,JS,CSS..."
             />
             <Box sx={{ width: "90%" }}>
+              <FormLabel>O que você faz?</FormLabel>
               <Select
                 options={options}
                 isMulti
@@ -105,6 +111,7 @@ const DevForm = () => {
             </Box>
           </Box>
           <Box sx={{ width: "90%", height: "100%" }}>
+            <FormLabel>O que você faz?</FormLabel>
             <TextAreaInput
               rows="8"
               onChange={(e) => setAbout(e.target.value)}
