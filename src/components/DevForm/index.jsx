@@ -60,7 +60,7 @@ const DevForm = () => {
           bgColor: "grey.4",
           m: "9px 0",
           "::placeholder": {
-            color: "black",
+            color: "#9E9Ea7",
           },
         },
       }}
