@@ -5,7 +5,7 @@ import Select from "react-select";
 import { useContext, useState } from "react";
 import { DevContext } from "../../providers/Dev";
 import TextAreaInput from "../TextAreaInput";
-import { FormLabel } from "@chakra-ui/react";
+import { FormLabel } from "@chakra-ui/form-control";
 
 const DevForm = () => {
   const { devRegister } = useContext(DevContext);
@@ -54,6 +54,12 @@ const DevForm = () => {
         desktop: "black solid 2px",
       }}
       sx={{
+        width: "100%",
+        label: {
+          margin: "0",
+          fontSize: { mobile: "14px", desktop: "16px" },
+          color: "#666665",
+        },
         margin: "auto",
         display: "flex",
         flexDirection: "column",
@@ -61,7 +67,6 @@ const DevForm = () => {
         backgroundColor: "white",
         input: {
           bgColor: "grey.4",
-          m: "9px 0",
           "::placeholder": {
             color: "#9E9Ea7",
           },
@@ -123,9 +128,8 @@ const DevForm = () => {
             <Box
               width={{
                 mobile: "100%",
-                desktop: "90%",
+                desktop: "100%",
               }}
-              padding={{ mobile: "15" }}
             >
               <FormLabel>O que você faz?</FormLabel>
               <Select
@@ -148,13 +152,12 @@ const DevForm = () => {
           </Box>
         </Box>
         <Button
-          left={{ mobile: "40%", desktop: "45%" }}
           sx={{
             bgColor: "purple.2",
             color: " white",
             width: "30%",
-            transform: "translate(-50%)",
-            m: "5",
+            display: "block",
+            m: "0 auto 20px",
           }}
           onClick={() => {
             console.log(data);
