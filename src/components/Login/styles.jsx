@@ -2,7 +2,7 @@ const style = {
   color: "black",
   bgColor: "white",
   p: 15,
-  border: "solid #4630AB 2px",
+  border: "solid #4630AB 3px",
   width: { mobile: "90vw", desktop: "100%" },
   height: { mobile: "80%", desktop: 480 },
   maxWidth: 500,
