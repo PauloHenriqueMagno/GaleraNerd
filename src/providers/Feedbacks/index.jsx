@@ -1,9 +1,11 @@
 import api from "../../services";
 import { createContext, useContext, useState } from "react";
+import { useToast } from "@chakra-ui/toast";
 
 export const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
+  const toast = useToast();
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("galeranerd/token")) || ""
   );
@@ -21,9 +23,7 @@ export const FeedbackProvider = ({ children }) => {
   };
   const getFeedbacks = () => {
     api
-      .get("feedbacks", {
-        headers: { Authorization: `bearer: ${token}` },
-      })
+      .get("feedbacks")
       .then((res) => setFeedbackList(res.data))
       .catch((err) => console.log(err));
   };
@@ -33,8 +33,26 @@ export const FeedbackProvider = ({ children }) => {
       .post("feedbacks", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then()
-      .catch();
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Oba! Seu feedback foi criado!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível criar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const editFeedback = (data) => {
@@ -42,8 +60,26 @@ export const FeedbackProvider = ({ children }) => {
       .patch(`feedbacks/${data.id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Editado com sucesso",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível editar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   return (

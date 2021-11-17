@@ -5,6 +5,7 @@ const TextAreaInput = ({
   registerName,
   errorMessage,
   placeholder,
+  rows = "7",
   ...rest
 }) => {
   return (
@@ -19,7 +20,7 @@ const TextAreaInput = ({
         focusBorderColor={!!errorMessage ? "error" : "grey.2"}
         bg="grey.4"
         _placeholder={{ color: "grey.2" }}
-        rows="7"
+        rows={rows}
       />
       {!!errorMessage && (
         <Text fontSize="12px" color="error" marginTop="12px">
