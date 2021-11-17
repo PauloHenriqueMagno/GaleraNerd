@@ -14,6 +14,15 @@ export const UserProvider = ({ children }) => {
   );
   const toast = useToast();
 
+  const [usersList, setUserslist] = useState([]);
+
+  const getUsersList = () => {
+    api
+      .get("users")
+      .then((response) => setUserslist(response.data))
+      .catch((err) => console.log(err));
+  };
+
   const login = (data) => {
     api
       .post("signin", data)
@@ -67,7 +76,17 @@ export const UserProvider = ({ children }) => {
     setUserInfo({});
   };
   return (
-    <UserContext.Provider value={{ login, register, logOut, userInfo, token }}>
+    <UserContext.Provider
+      value={{
+        login,
+        register,
+        logOut,
+        userInfo,
+        token,
+        usersList,
+        getUsersList,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

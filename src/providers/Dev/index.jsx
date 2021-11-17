@@ -1,5 +1,5 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router";
 import { useToast } from "@chakra-ui/toast";
 
@@ -67,3 +67,5 @@ export const DevProvider = ({ children }) => {
     </DevContext.Provider>
   );
 };
+
+export const useDev = () => useContext(DevContext);
