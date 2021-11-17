@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const login = (data) => {
+  const login = (data, devId) => {
     api
       .post("signin", data)
       .then((res) => {
@@ -42,7 +42,14 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
-        res.data.user.dev ? history.push("/dev") : history.push("/user");
+        if (res.data.user.dev) {
+          history.push("/dev");
+        } else if (devId !== undefined) {
+          history.push(`/dev-profile/${devId}`);
+        } else {
+          history.push("/user");
+        }
+        // res.data.user.dev ? history.push("/dev") : history.push("/user");
       })
       .catch((err) => {
         console.log(err);

@@ -25,6 +25,9 @@ const Routes = () => {
       <Route path="/register">
         <Register />
       </Route>
+      <Route path="/login:devId">
+        <Login />
+      </Route>
       <Route path="/login">
         <Login />
       </Route>

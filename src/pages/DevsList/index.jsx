@@ -44,7 +44,7 @@ const DevList = () => {
               ) / feedback.recommendation.length;
 
             data = {
-              id: dev.userId,
+              id: dev.id,
               bio: dev.bio,
               name: user.name,
               recomend: recommendationAverage,
