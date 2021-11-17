@@ -60,7 +60,7 @@ const DevCard = ({ dev }) => {
           <div>
             <h3>{name}</h3>
             <DevCardHeaderDiv width="min-content">
-              <StarAverage rate={recomend.toFixed(1)} />
+              <StarAverage rate={recomend.toFixed(1)} id={id} />
               <span>{recomend.toFixed(1)}</span>
             </DevCardHeaderDiv>
           </div>
