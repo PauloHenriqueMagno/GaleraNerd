@@ -1,8 +1,8 @@
 import {
-    AccordionItemStyled,
-    AccordionButtonStyled,
-    AccordionPanelStyled,
-    ButtonStyled
+  AccordionItemStyled,
+  AccordionButtonStyled,
+  AccordionPanelStyled,
+  ButtonStyled,
 } from "./styled";
 
 import { useEffect, useState } from "react";
@@ -20,26 +20,27 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
     const { onOpen, isOpen, onClose } = useDisclosure();
     const [ isOpenRating, setIsOpenRating ] = useState(false);
 
-    const getName = () => {
-        api
-            .get(`/users/${id}`)
-            .then(response => setName(response.data.name));
+  const getName = () => {
+    api.get(`/users/${id}`).then((response) => setName(response.data.name));
+  };
+
+  const changeStatus = (close = false) => {
+    const data = {
+      id: projectId,
+      status: close
+        ? "Recusado"
+        : Status === "Aguardando orçamento"
+        ? "Confirmar o orçamento"
+        : Status === "Confirmar o orçamento"
+        ? "Em andamento"
+        : Status === "Em andamento"
+        ? "Concluido"
+        : "Finalizado",
     };
 
-    const changeStatus = (close = false) => {
-        const data = {
-            id: projectId,
-            status: (
-                close ? "Recusado" : (
-                Status === "Aguardando orçamento" ? "Confirmar o orçamento": (
-                Status === "Confirmar o orçamento" ? "Em andamento": (
-                Status === "Em andamento"? "Concluido" : "Finalizado"
-            )))),
-        };
-
-        setStatus(data.status);
-        editProject(data);
-    };
+    setStatus(data.status);
+    editProject(data);
+  };
 
     const Buttons = () => {
         if(Status === "Finalizado"){
@@ -110,13 +111,13 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
         else{
             return <ButtonStyled disabled={true} marginLeft="auto">Pedido recusado</ButtonStyled>
         }
-    }
+  };
 
-    useEffect(()=>{
-        getName();
+  useEffect(() => {
+    getName();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+  }, []);
 
     return (
         <AccordionItemStyled key={projectId} status={Status} {...rest}>
@@ -134,25 +135,23 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
                 }
                 <Buttons />
 
-                {
-                    (dev || Status==="Aguardando orçamento") &&
-                    <BudgetModal 
-                        isOpen={isOpen}
-                        onClose={onClose}
-                        projectId={projectId}
-                    />
-                }
-                {
-                    !dev &&
-                    <RatingModal 
-                        isOpen={isOpenRating} 
-                        onClose={()=>setIsOpenRating(false)} 
-                        devId={devId}
-                    />
-                }
-            </AccordionPanelStyled>
-        </AccordionItemStyled>
-    );
+        {(dev || Status === "Aguardando orçamento") && (
+          <BudgetModal
+            isOpen={isOpen}
+            onClose={onClose}
+            projectId={projectId}
+          />
+        )}
+        {!dev && (
+          <RatingModal
+            isOpen={isOpenRating}
+            onClose={() => setIsOpenRating(false)}
+            devId={devId}
+          />
+        )}
+      </AccordionPanelStyled>
+    </AccordionItemStyled>
+  );
 };
 
 export default ProjectCard;
