@@ -16,7 +16,7 @@ const Dev = () => {
         minHeight="100vh"
         minWidth="100vw"
         bgGradient={{
-          mobile: "linear(to-b, purple.2 35%, white 35%)",
+          mobile: "linear(to-b, purple.2 85%, white 35%)",
           desktop: "linear(to-b, purple.2 50%, white 50%, )",
         }}
       >
@@ -29,7 +29,13 @@ const Dev = () => {
           maxWidth="1280"
         >
           <DevForm />
-          <Heading mt="10" fontSize="34px">
+          <Heading
+            mt="10"
+            fontSize={{
+              mobile: "24px",
+              desktop: "34px",
+            }}
+          >
             Meus projetos
           </Heading>
           <Accordion mt="50px" minWidth="500" defaultIndex={[0]} allowMultiple>

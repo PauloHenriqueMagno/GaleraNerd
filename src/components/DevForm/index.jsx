@@ -48,12 +48,15 @@ const DevForm = () => {
 
   return (
     <Box
+      border={{
+        mobile: "black solid 0.5px",
+        desktop: "black solid 2px",
+      }}
       sx={{
         width: "80%",
         margin: "auto",
         display: "flex",
         flexDirection: "column",
-        border: "black solid 2px",
         borderRadius: "5px",
         backgroundColor: "white",
         input: {
@@ -65,11 +68,22 @@ const DevForm = () => {
         },
       }}
     >
-      <Heading as="h2" sx={{ m: 5 }} color="black">
+      <Heading
+        fontSize={{
+          mobile: "24px",
+          desktop: "24px",
+        }}
+        sx={{ m: 5 }}
+        color="black"
+      >
         Complete seu cadastro
       </Heading>
       <form>
         <Box
+          flexWrap={{
+            mobile: "wrap",
+            desktop: "nowrap",
+          }}
           sx={{
             p: 5,
             display: "flex",
@@ -102,6 +116,7 @@ const DevForm = () => {
                 isMulti
                 closeMenuOnSelect={false}
                 onChange={onSelectChange}
+                placeholder="Categorias"
               />
             </Box>
           </Box>
