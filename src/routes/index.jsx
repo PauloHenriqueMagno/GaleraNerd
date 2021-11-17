@@ -21,11 +21,11 @@ const Routes = () => {
       <Route path="/search">
         <Search />
       </Route>
-      <Route path="/">
-        <Home />
-      </Route>
       <Route path="/dev">
         <Dev />
+      </Route>
+      <Route path="/">
+        <Home />
       </Route>
     </Switch>
   );
