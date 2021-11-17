@@ -20,6 +20,7 @@ export const AccordionItemStyled = ({children, key, status}) => {
         border: `2px solid ${color(status)}`,
         borderRadius: "8px",
         background: "grey.3",
+        margin: "20px 0",
 
         ".ProjectDescription": {
             borderTop: `2px solid ${color(status)}`,
@@ -69,7 +70,11 @@ export const ButtonStyled = ({children, color, ...rest}) => {
             width: "max-content",
             padding: "10px",
             borderRadius: "5px",
-            color: "white"
+            color: "white",
+
+            _hover: {
+                filter: "brightness(50%)"
+            },
         },
     });
 

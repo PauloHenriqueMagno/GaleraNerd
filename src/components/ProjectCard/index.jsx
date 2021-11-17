@@ -5,23 +5,20 @@ import {
     ButtonStyled
 } from "./styled";
 
-import { AiFillCaretDown } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import api from "../../services";
 import BudgetModal from "../BudgetModal";
 import { useProjects } from "../../providers/Projects";
 import RatingModal from "../RatingModal";
-import { Flex } from "@chakra-ui/react";
+import { Flex, AccordionIcon } from "@chakra-ui/react";
 
-const ProjectCard = ({id, devId, projectId, description, status, budget, dev = false}) => {
-    description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-
+const ProjectCard = ({id, devId, projectId, description, status, budget, dev = false, ...rest}) => {
     const { editProject } = useProjects();
     const [ name, setName ] = useState();
     const [ Status, setStatus ] = useState(status);
     const { onOpen, isOpen, onClose } = useDisclosure();
-    const [ isOpenRating, setIsOpenRating ] = useState(false)
+    const [ isOpenRating, setIsOpenRating ] = useState(false);
 
     const getName = () => {
         api
@@ -45,8 +42,21 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
     };
 
     const Buttons = () => {
+        if(Status === "Finalizado"){
+            return <ButtonStyled disabled={true}>Projeto Finalizado</ButtonStyled>
+        }
         if(!dev && Status === "Concluido"){
             return <ButtonStyled onClick={()=> setIsOpenRating(true)}>Finalizar projeto e avaliar</ButtonStyled>
+        }
+        if(!dev && Status==="Aguardando orçamento"){
+            return (
+                <ButtonStyled
+                    disabled={true}
+                    marginLeft="auto"
+                >
+                    Aguardando orçamento
+                </ButtonStyled>
+            )
         }
         if(!dev && Status === "Confirmar o orçamento"){
             return (
@@ -94,9 +104,10 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
                 </Flex>
             )
         }
-        if(dev && Status === "Confirmar o orçamento"){
-            return <ButtonStyled disabled={true} marginLeft="auto" >Aguardando confirmação do cliente</ButtonStyled>
-        }else{
+        if(dev && (Status === "Confirmar o orçamento"||Status === "Concluido")){
+            return <ButtonStyled disabled={true} marginLeft="auto">Aguardando confirmação do cliente</ButtonStyled>
+        }
+        else{
             return <ButtonStyled disabled={true} marginLeft="auto">Pedido recusado</ButtonStyled>
         }
     }
@@ -108,17 +119,19 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
     },[]);
 
     return (
-        <AccordionItemStyled key={projectId} status={Status}>
+        <AccordionItemStyled key={projectId} status={Status} {...rest}>
             <AccordionButtonStyled>
                 <h3>{name}</h3>
                 <p>{Status}</p>
-                <AiFillCaretDown />
+                <AccordionIcon />
             </AccordionButtonStyled>
             <AccordionPanelStyled className="ProjectDescription">
                 <p className="borderBottom">{description}</p>
 
-                <p>{budget}</p>
-
+                {
+                    budget &&
+                    <p>{budget}</p>
+                }
                 <Buttons />
 
                 {
