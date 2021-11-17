@@ -1,7 +1,7 @@
 import api from "../../services";
 import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useToast, Box } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
@@ -33,16 +33,10 @@ export const UserProvider = ({ children }) => {
         );
         toast({
           position: "top-left",
-          title: "Account created.",
-          description: "We've created your account for you.",
+          title: "Login realizado com sucesso!",
           status: "success",
-          duration: 4000,
+          duration: 2000,
           isClosable: true,
-          render: () => (
-            <Box color="white" p={3} bg="blue.500">
-              Hello World
-            </Box>
-          ),
         });
         setToken(res.data.accessToken);
         console.log(res);
@@ -50,7 +44,16 @@ export const UserProvider = ({ children }) => {
         setUserInfo(res.data.user);
         res.data.user.dev ? history.push("/dev") : history.push("/user");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Houve algum problema ao realizar o login",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const register = (data) => {
@@ -65,8 +68,24 @@ export const UserProvider = ({ children }) => {
           JSON.stringify(res.data.accessToken)
         );
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
+        toast({
+          position: "top-left",
+          title: "Sua conta foi criada com sucesso!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Houve algum problema no seu cadastro",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const logOut = () => {

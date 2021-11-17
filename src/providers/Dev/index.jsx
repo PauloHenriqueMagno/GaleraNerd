@@ -30,8 +30,24 @@ export const DevProvider = ({ children }) => {
       .patch(`dev/${userInfo.id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {console.log(res)
+        toast({
+          position: "top-left",
+          title: "Perfil editado com sucesso!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });})
+        .catch((err) => {
+          console.log(err);
+          toast({
+            position: "top-left",
+            title: "Ops! Não foi possível editar",
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+          });
+        });
   };
 
   const devRegister = (data) => {
@@ -50,13 +66,22 @@ export const DevProvider = ({ children }) => {
         history.push("dev");
         toast({
           position: "top-left",
-          title: "Registrado com sucesso",
+          title: "Cadastrado com sucesso",
           status: "success",
           duration: 2000,
           isClosable: true,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Houve algum problema no seu cadastro",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   return (
