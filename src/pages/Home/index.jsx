@@ -198,11 +198,23 @@ const Home = () => {
                 <Text fontSize="16px">Product Owner</Text>
                 <Text fontSize="14px">
                   <Image src={github} display="inline-block" mr="2" />
-                  /patezsidney
+                  <Link
+                    color="white"
+                    href="https://github.com/patezsidney/"
+                    target="_blank"
+                  >
+                    /patezsidney
+                  </Link>
                 </Text>
                 <Text fontSize="14px">
                   <Image src={linkedin} display="inline-block" mr="2" />
-                  /in/sidney-patez
+                  <Link
+                    color="white"
+                    href="https://linkedin.com/in/sidney-patez/"
+                    target="_blank"
+                  >
+                    /in/sidney-patez
+                  </Link>
                 </Text>
               </Box>
             </Flex>
@@ -216,11 +228,23 @@ const Home = () => {
                 <Text fontSize="16px">Scrum Master</Text>
                 <Text fontSize="14px">
                   <Image src={github} display="inline-block" mr="2" />
-                  /depavani
+                  <Link
+                    color="white"
+                    href="https://github.com/depavani/"
+                    target="_blank"
+                  >
+                    /depavani
+                  </Link>
                 </Text>
                 <Text fontSize="14px">
                   <Image src={linkedin} display="inline-block" mr="2" />
-                  /in/debora-pavani
+                  <Link
+                    color="white"
+                    href="https://linkedin.com/in/debora-pavani/"
+                    target="_blank"
+                  >
+                    /in/debora-pavani
+                  </Link>
                 </Text>
               </Box>
             </Flex>
@@ -234,15 +258,27 @@ const Home = () => {
                 <Text fontSize="16px">Tech Leader</Text>
                 <Text fontSize="14px">
                   <Image src={github} display="inline-block" mr="2" />
-                  /PauloHenri
-                  <wbr />
-                  queMagno
+                  <Link
+                    color="white"
+                    href="https://github.com/PauloHenriqueMagno/"
+                    target="_blank"
+                  >
+                    /PauloHenri
+                    <wbr />
+                    queMagno
+                  </Link>
                 </Text>
                 <Text fontSize="14px">
                   <Image src={linkedin} display="inline-block" mr="2" />
-                  /in/paulo
-                  <wbr />
-                  henriquemagno
+                  <Link
+                    color="white"
+                    href="https://linkedin.com/in/paulohenriquemagno/"
+                    target="_blank"
+                  >
+                    /in/paulo
+                    <wbr />
+                    henriquemagno
+                  </Link>
                 </Text>
               </Box>
             </Flex>
@@ -256,11 +292,23 @@ const Home = () => {
                 <Text fontSize="16px">Quality Assurance</Text>
                 <Text fontSize="14px">
                   <Image src={github} display="inline-block" mr="2" />
-                  /pedromenimen
+                  <Link
+                    color="white"
+                    href="https://github.com/pedromenimen/"
+                    target="_blank"
+                  >
+                    /pedromenimen
+                  </Link>
                 </Text>
                 <Text fontSize="14px">
                   <Image src={linkedin} display="inline-block" mr="2" />
-                  /in/pedro-henrique2
+                  <Link
+                    color="white"
+                    href="https://linkedin.com/in/pedro-henrique2/"
+                    target="_blank"
+                  >
+                    /in/pedro-henrique2
+                  </Link>
                 </Text>
               </Box>
             </Flex>
@@ -274,11 +322,23 @@ const Home = () => {
                 <Text fontSize="16px">Quality Assurance</Text>
                 <Text fontSize="14px">
                   <Image src={github} display="inline-block" mr="2" />
-                  /Matheus-Henrique-Burey
+                  <Link
+                    color="white"
+                    href="https://github.com/Matheus-Henrique-Burey/"
+                    target="_blank"
+                  >
+                    /Matheus-Henrique-Burey
+                  </Link>
                 </Text>
                 <Text fontSize="14px">
                   <Image src={linkedin} display="inline-block" mr="2" />
-                  /in/matheus-h-burei
+                  <Link
+                    color="white"
+                    href="https://linkedin.com/in/matheus-h-burei/"
+                    target="_blank"
+                  >
+                    /in/matheus-h-burei
+                  </Link>
                 </Text>
               </Box>
             </Flex>
