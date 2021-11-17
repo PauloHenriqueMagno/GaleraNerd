@@ -49,7 +49,8 @@ const DevForm = () => {
   return (
     <Box
       sx={{
-        width: "200%",
+        width: "80%",
+        margin: "auto",
         display: "flex",
         flexDirection: "column",
         border: "black solid 2px",
@@ -57,7 +58,7 @@ const DevForm = () => {
         backgroundColor: "white",
         input: {
           bgColor: "grey.4",
-          m: "4px 0",
+          m: "9px 0",
           "::placeholder": {
             color: "black",
           },
@@ -116,9 +117,11 @@ const DevForm = () => {
         <Button
           sx={{
             bgColor: "purple.2",
-            width: "80%",
+            color: " white",
+            width: "30%",
             transform: "translate(-50%)",
             left: "50%",
+            m: "10",
           }}
           onClick={() => {
             console.log(data);
