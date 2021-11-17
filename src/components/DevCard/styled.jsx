@@ -15,6 +15,11 @@ export const DevCardLi = chakra("div", {
     svg: {
       fontSize: "30px",
     },
+
+    ":hover": {
+      borderColor: "purple.2",
+      cursor: "pointer",
+    },
   },
 });
 
