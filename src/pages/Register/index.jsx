@@ -1,7 +1,7 @@
 import { Flex, Image, Button, Box } from "@chakra-ui/react"
 import RegisterForm from "../../components/RegisterForm";
 import svg from "../../assets/logoRG.svg";
-import {ArrowBackIcon} from "@chakra-ui/icons";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
       minHeight="100vh" 
       bgGradient={{
         mobile: "linear(to-b, purple.2 35%, white 35%)",
-        desktop: "linear(to-r, white 35%, purple.2 35%)"
+        desktop: "linear(to-r, white 35%, purple.2 35%)",
       }}
     >
         <Button 

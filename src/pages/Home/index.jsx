@@ -16,7 +16,7 @@ import imghome from "../../assets/imghome.png";
 
 const Home = () => {
   return (
-    <Box maxW="1280px" m="auto" >
+    <Box maxW="1280px" m="auto">
       <Header />
       <Box
         backgroundImage={backgrond}
@@ -26,12 +26,11 @@ const Home = () => {
         color="white"
         p="50px 20px"
       >
-        <Heading mb="4">
-          GALERA NERD
-        </Heading>
-        <Text fontSize="16px" maxW="500px" >
-          rem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500since
+        <Heading mb="4">GALERA NERD</Heading>
+        <Text fontSize="16px" maxW="500px">
+          rem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500since
         </Text>
         <Button
           as="a"
@@ -113,7 +112,9 @@ const Home = () => {
             <Image src={sidney} />
             <Box w="2px" mx="4" bg="white"></Box>
             <Box>
-              <Heading mt="6" fontSize="24px">Sidney Patez</Heading>
+              <Heading mt="6" fontSize="24px">
+                Sidney Patez
+              </Heading>
               <Text fontSize="16px">Product Owner</Text>
               <Text fontSize="14px"><Image src={github} display="inline-block" mr="2" />/patezsidney</Text>
               <Text fontSize="14px"><Image src={linkedin} display="inline-block" mr="2" />/in/sidney-patez</Text>
@@ -123,7 +124,9 @@ const Home = () => {
             <Image src={debora} />
             <Box w="2px" mx="4" bg="white"></Box>
             <Box>
-              <Heading mt="6" fontSize="24px">Debora Pavani</Heading>
+              <Heading mt="6" fontSize="24px">
+                Debora Pavani
+              </Heading>
               <Text fontSize="16px">Scrum Master</Text>
               <Text fontSize="14px"><Image src={github} display="inline-block" mr="2" />/depavani</Text>
               <Text fontSize="14px"><Image src={linkedin} display="inline-block" mr="2" />/in/debora-pavani</Text>
@@ -133,7 +136,9 @@ const Home = () => {
             <Image src={paulo} />
             <Box w="2px" mx="4" bg="white"></Box>
             <Box>
-              <Heading mt="6" fontSize="24px">Paulo H. Magno</Heading>
+              <Heading mt="6" fontSize="24px">
+                Paulo H. Magno
+              </Heading>
               <Text fontSize="16px">Tech Leader</Text>
               <Text fontSize="14px"><Image src={github} display="inline-block" mr="2" />/PauloHenri<wbr/>queMagno</Text>
               <Text fontSize="14px"><Image src={linkedin} display="inline-block" mr="2" />/in/paulo<wbr/>henriquemagno</Text>
@@ -143,7 +148,9 @@ const Home = () => {
             <Image src={pedro} />
             <Box w="2px" mx="4" bg="white"></Box>
             <Box>
-              <Heading mt="6" fontSize="24px">Pedro H.  Moreira</Heading>
+              <Heading mt="6" fontSize="24px">
+                Pedro H. Moreira
+              </Heading>
               <Text fontSize="16px">Quality Assurance</Text>
               <Text fontSize="14px"><Image src={github} display="inline-block" mr="2" />/pedromenimen</Text>
               <Text fontSize="14px"><Image src={linkedin} display="inline-block" mr="2" />/in/pedro-henrique2</Text>
@@ -153,7 +160,9 @@ const Home = () => {
             <Image src={matheus} />
             <Box w="2px" mx="4" bg="white"></Box>
             <Box>
-              <Heading mt="6" fontSize="24px">Matheus H. Burei</Heading>
+              <Heading mt="6" fontSize="24px">
+                Matheus H. Burei
+              </Heading>
               <Text fontSize="16px">Quality Assurance</Text>
               <Text fontSize="14px"><Image src={github} display="inline-block" mr="2" />/Matheus-Henrique-Burey</Text>
               <Text fontSize="14px"><Image src={linkedin} display="inline-block" mr="2" />/in/matheus-h-burei</Text>
@@ -170,7 +179,7 @@ const Home = () => {
         </Box>
       </Flex>
     </Box>
-  )
-}
+  );
+};
 
 export default Home;

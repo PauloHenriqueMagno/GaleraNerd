@@ -4,6 +4,7 @@ import Login from "../pages/login";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
 import DevList from "../pages/DevsList";
+import Dev from "../pages/Dev";
 
 const Routes = () => {
   return (
@@ -19,6 +20,9 @@ const Routes = () => {
       </Route>
       <Route path="/search">
         <Search />
+      </Route>
+      <Route path="/dev">
+        <Dev />
       </Route>
       <Route path="/">
         <Home />

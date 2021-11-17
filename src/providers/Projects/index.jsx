@@ -1,9 +1,11 @@
 import api from "../../services";
 import { createContext, useContext, useState } from "react";
+import { useToast } from "@chakra-ui/toast";
 
 export const ProjectsContext = createContext();
 
 export const ProjectsProvider = ({ children }) => {
+  const toast = useToast();
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("galeranerd/token")) || ""
   );
@@ -26,8 +28,26 @@ export const ProjectsProvider = ({ children }) => {
       .patch(`projects/${data.id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Editado com sucesso",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível editar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const createProject = async (data) => {
@@ -35,8 +55,26 @@ export const ProjectsProvider = ({ children }) => {
       .post("projects", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Criado com sucesso",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível criar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   return (
