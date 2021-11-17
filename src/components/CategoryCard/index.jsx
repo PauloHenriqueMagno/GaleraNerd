@@ -17,6 +17,7 @@ const CategoryCard = ({ category, action }) => {
       onClick={action}
       key={id}
       margin={{ mobile: "15px 0", desktop: "40px 0" }}
+      borderRadius="5px"
     >
       <Flex direction="column">
         <Flex
