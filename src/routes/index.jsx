@@ -1,8 +1,9 @@
 import { Switch, Route } from "react-router";
 import Register from "../pages/Register";
-import Login from "../pages/login";
+import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
+import User from "../pages/User";
 
 const Routes = () => {
   return (
@@ -17,8 +18,11 @@ const Routes = () => {
       <Route path="/search">
         <Search />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Home />
+      </Route>
+      <Route path="/user">
+        <User />
       </Route>
     </Switch>
   );
