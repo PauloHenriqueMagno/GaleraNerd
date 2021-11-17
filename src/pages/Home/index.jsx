@@ -45,9 +45,9 @@ const Home = () => {
         >
           <Heading mb="4">GALERA NERD</Heading>
           <Text fontSize="16px" maxW="500px">
-            rem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500since
+            Sem dificuldade, sem burocracia e sem demora! <br />
+            Uma maneira simples de encontrar o desenvolvedor para tirar o seu
+            projeto do papel.
           </Text>
           <Button
             as="a"
