@@ -197,7 +197,9 @@ export const Button = ({
 
       "@media (max-width: 768px)": {
         display: display("mobile"),
-        border: `1px solid purple.2`,
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderColor: "purple.2",
         padding: "15px",
         fontSize: "20px",
         width: "90%",

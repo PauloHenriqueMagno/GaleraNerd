@@ -25,10 +25,6 @@ const HeaderComponent = () => {
   const [isOpen, setIsOpen] = useState("");
   const [connected, setConnected] = useState(false);
   const { userInfo, logOut } = useContext(UserContext);
-  //   const userInfo = JSON.parse(localStorage.getItem("galeranerd/user"));
-  //   console.log(userInfo);
-
-  //   const connected = userInfo === {} ? false : true;
 
   const history = useHistory();
 
@@ -37,7 +33,6 @@ const HeaderComponent = () => {
   useEffect(() => {
     const validation = !!userInfo.id ? true : false;
     setConnected(validation);
-    console.log(validation, userInfo);
   }, [userInfo]);
 
   const handleLogout = () => {
@@ -73,7 +68,7 @@ const HeaderComponent = () => {
             Serviços
           </Button>
 
-          <Button device="mobile" logged={!connected}>
+          <Button device="mobile" logged={connected} click={showProfile}>
             <UserMenuIcon>
               <ProfileIcon color="white" />
             </UserMenuIcon>
@@ -81,7 +76,7 @@ const HeaderComponent = () => {
               <p>Ir para meu perfil</p>
             </div>
           </Button>
-          <Button device="mobile" logged={!connected}>
+          <Button device="mobile" logged={connected} click={handleLogout}>
             <UserMenuIcon variant="error">
               <LogOutIcon color="white" />
             </UserMenuIcon>
