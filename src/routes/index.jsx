@@ -3,6 +3,7 @@ import Register from "../pages/Register";
 import Login from "../pages/login";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
+import Dev from "../pages/Dev";
 
 const Routes = () => {
   return (
@@ -19,6 +20,9 @@ const Routes = () => {
       </Route>
       <Route path="/">
         <Home />
+      </Route>
+      <Route path="/dev">
+        <Dev />
       </Route>
     </Switch>
   );
