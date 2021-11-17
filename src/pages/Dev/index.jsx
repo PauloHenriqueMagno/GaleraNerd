@@ -13,10 +13,8 @@ const Dev = () => {
       <Flex
         align="center"
         justifyContent={{ mobile: "center", desktop: "center" }}
-        minHeight="100vh"
-        minWidth="100vw"
         bgGradient={{
-          mobile: "linear(to-b, purple.2 85%, white 35%)",
+          mobile: "linear(to-b, purple.2 96%, white 35%)",
           desktop: "linear(to-b, purple.2 50%, white 50%, )",
         }}
       >
@@ -38,7 +36,7 @@ const Dev = () => {
           >
             Meus projetos
           </Heading>
-          <Accordion mt="50px" minWidth="500" defaultIndex={[0]} allowMultiple>
+          <Accordion mt="50px" defaultIndex={[0]} allowMultiple>
             <ProjectCard
               id="1"
               devId="1"

@@ -53,7 +53,6 @@ const DevForm = () => {
         desktop: "black solid 2px",
       }}
       sx={{
-        width: "80%",
         margin: "auto",
         display: "flex",
         flexDirection: "column",
@@ -91,7 +90,13 @@ const DevForm = () => {
             alignItems: "center",
           }}
         >
-          <Box sx={{ width: "90%" }}>
+          <Box
+            width={{
+              mobile: "100%",
+              desktop: "90%",
+            }}
+            padding={{ desktop: "15" }}
+          >
             <ComponentInput
               onChange={(e) => setLinkedin(e.target.value)}
               placeholderMessage="Linkedin"
@@ -110,7 +115,13 @@ const DevForm = () => {
               onChange={(e) => setTecnologyList(e.target.value)}
               placeholderMessage="Ex: HTML,JS,CSS..."
             />
-            <Box sx={{ width: "90%" }}>
+            <Box
+              width={{
+                mobile: "100%",
+                desktop: "90%",
+              }}
+              padding={{ mobile: "15" }}
+            >
               <Select
                 options={options}
                 isMulti
@@ -120,7 +131,7 @@ const DevForm = () => {
               />
             </Box>
           </Box>
-          <Box sx={{ width: "90%", height: "100%" }}>
+          <Box sx={{ width: "100%", height: "100%" }}>
             <TextAreaInput
               rows="8"
               onChange={(e) => setAbout(e.target.value)}
@@ -130,13 +141,13 @@ const DevForm = () => {
           </Box>
         </Box>
         <Button
+          left={{ mobile: "40%", desktop: "45%" }}
           sx={{
             bgColor: "purple.2",
             color: " white",
             width: "30%",
             transform: "translate(-50%)",
-            left: "50%",
-            m: "10",
+            m: "5",
           }}
           onClick={() => {
             console.log(data);
