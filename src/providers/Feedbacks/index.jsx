@@ -33,8 +33,26 @@ export const FeedbackProvider = ({ children }) => {
       .post("feedbacks", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then()
-      .catch();
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Oba! Seu feedback foi criado!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível criar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const editFeedback = (data) => {
