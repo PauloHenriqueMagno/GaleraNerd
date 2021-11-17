@@ -5,14 +5,13 @@ import {
   ButtonStyled,
 } from "./styled";
 
-import { AiFillCaretDown } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import api from "../../services";
 import BudgetModal from "../BudgetModal";
 import { useProjects } from "../../providers/Projects";
 import RatingModal from "../RatingModal";
-import { Flex } from "@chakra-ui/react";
+import { Flex, AccordionIcon } from "@chakra-ui/react";
 
 const ProjectCard = ({
   id,
@@ -22,6 +21,7 @@ const ProjectCard = ({
   status,
   budget,
   dev = false,
+  ...rest
 }) => {
   const { editProject } = useProjects();
   const [name, setName] = useState();
@@ -52,10 +52,20 @@ const ProjectCard = ({
   };
 
   const Buttons = () => {
+    if (Status === "Finalizado") {
+      return <ButtonStyled disabled={true}>Projeto Finalizado</ButtonStyled>;
+    }
     if (!dev && Status === "Concluido") {
       return (
         <ButtonStyled onClick={() => setIsOpenRating(true)}>
           Finalizar projeto e avaliar
+        </ButtonStyled>
+      );
+    }
+    if (!dev && Status === "Aguardando orçamento") {
+      return (
+        <ButtonStyled disabled={true} marginLeft="auto">
+          Aguardando orçamento
         </ButtonStyled>
       );
     }
@@ -97,7 +107,7 @@ const ProjectCard = ({
         </Flex>
       );
     }
-    if (dev && Status === "Confirmar o orçamento") {
+    if (dev && (Status === "Confirmar o orçamento" || Status === "Concluido")) {
       return (
         <ButtonStyled disabled={true} marginLeft="auto">
           Aguardando confirmação do cliente
@@ -119,17 +129,16 @@ const ProjectCard = ({
   }, []);
 
   return (
-    <AccordionItemStyled key={projectId} status={Status}>
+    <AccordionItemStyled key={projectId} status={Status} {...rest}>
       <AccordionButtonStyled>
         <h3>{name}</h3>
         <p>{Status}</p>
-        <AiFillCaretDown />
+        <AccordionIcon />
       </AccordionButtonStyled>
       <AccordionPanelStyled className="ProjectDescription">
         <p className="borderBottom">{description}</p>
 
-        <p>{budget}</p>
-
+        {budget && <p>{budget}</p>}
         <Buttons />
 
         {(dev || Status === "Aguardando orçamento") && (

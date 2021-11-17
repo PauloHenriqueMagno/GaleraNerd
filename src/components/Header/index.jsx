@@ -64,7 +64,7 @@ const HeaderComponent = () => {
                     </Button>
                     <Button
                         color="purple.2"
-                        click={()=> history.push("/services")}
+                        click={()=> history.push("/search")}
                     >
                         Serviços
                     </Button>
