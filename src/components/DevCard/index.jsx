@@ -7,6 +7,7 @@ import {
   DevCardTag,
   DevCardHeaderDevIcon,
 } from "./styled";
+import { Text } from "@chakra-ui/react";
 import AuthDialog from "../AuthDialog";
 import { useHistory } from "react-router";
 import StarAverage from "../StarAverage";
@@ -60,7 +61,7 @@ const DevCard = ({ dev }) => {
           <div>
             <h3>{name}</h3>
             <DevCardHeaderDiv width="min-content">
-              <StarAverage rate={recomend.toFixed(1)} id={id} />
+              <StarAverage rate={recomend} id={id} />
               <span>{recomend.toFixed(1)}</span>
             </DevCardHeaderDiv>
           </div>
@@ -69,7 +70,7 @@ const DevCard = ({ dev }) => {
       </DevCardHeader>
       <DevCardBody>
         <p>{bio}</p>
-        <DevCardTags>{services.map(DevCardTag)}</DevCardTags>
+        {!!services && <DevCardTags>{services.map(DevCardTag)}</DevCardTags>}
       </DevCardBody>
     </DevCardLi>
   );

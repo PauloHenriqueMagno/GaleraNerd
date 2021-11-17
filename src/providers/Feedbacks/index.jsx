@@ -31,18 +31,13 @@ export const FeedbackProvider = ({ children }) => {
   const createFeedback = (data) => {
     api
       .post("feedbacks", data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
-      .then((res) => {
-        console.log(res);
-        toast({
-          position: "top-left",
-          title: "Oba! Seu feedback foi criado!",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
-      })
+      .then()
       .catch((err) => {
         console.log(err);
         toast({

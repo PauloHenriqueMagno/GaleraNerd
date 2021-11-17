@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
-        if (res.data.user.dev) {
+        if (!!res.data.user.dev) {
           history.push("/dev");
         } else if (devId !== undefined) {
           history.push(`/dev-profile/${devId}`);
@@ -67,17 +67,9 @@ export const UserProvider = ({ children }) => {
     api
       .post("signup", data)
       .then((res) => {
-        console.log(res);
-        setToken(res.data.accessToken);
-        setUserInfo(res.data.user);
-        localStorage.setItem(
-          "galeranerd/token",
-          JSON.stringify(res.data.accessToken)
-        );
-        localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         toast({
           position: "top-left",
-          title: "Sua conta foi criada com sucesso!",
+          title: "Sua conta foi criada com sucesso, faça login para continuar!",
           status: "success",
           duration: 2000,
           isClosable: true,
