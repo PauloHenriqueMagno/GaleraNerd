@@ -10,6 +10,9 @@ import ErrorPage from "../pages/ErrorPage";
 const Routes = () => {
   return (
     <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
       <Route path="/dev">
         <Dev />
       </Route>
@@ -24,9 +27,6 @@ const Routes = () => {
       </Route>
       <Route path="/search">
         <Search />
-      </Route>
-      <Route exact path="/">
-        <Home />
       </Route>
       <Route>
         <ErrorPage />
