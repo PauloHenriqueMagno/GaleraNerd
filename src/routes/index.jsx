@@ -5,10 +5,17 @@ import Home from "../pages/Home";
 import Search from "../pages/Search";
 import DevList from "../pages/DevsList";
 import Dev from "../pages/Dev";
+import ErrorPage from "../pages/ErrorPage";
 
 const Routes = () => {
   return (
     <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/dev">
+        <Dev />
+      </Route>
       <Route path="/register">
         <Register />
       </Route>
@@ -21,11 +28,8 @@ const Routes = () => {
       <Route path="/search">
         <Search />
       </Route>
-      <Route path="/dev">
-        <Dev />
-      </Route>
-      <Route path="/">
-        <Home />
+      <Route>
+        <ErrorPage />
       </Route>
     </Switch>
   );
