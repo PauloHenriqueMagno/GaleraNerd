@@ -21,9 +21,7 @@ export const FeedbackProvider = ({ children }) => {
   };
   const getFeedbacks = () => {
     api
-      .get("feedbacks", {
-        headers: { Authorization: `bearer: ${token}` },
-      })
+      .get("feedbacks")
       .then((res) => setFeedbackList(res.data))
       .catch((err) => console.log(err));
   };
