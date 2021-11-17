@@ -42,6 +42,16 @@ const Dev = () => {
               budget="Seu projeto de um ecommerce tomará em média uma semana para que fique pronto. O valor do orçamento cobre a mão de obra do serviço e além disso haverá um gasto fixo mensal de 50 reais para hospedagem do site.
                 O valor do orçamento é de: 600 reais."
             />
+            {projectList.map((project) => (
+              <ProjectCard
+                id={project.userId}
+                devId={project.devId}
+                projectId={project.id}
+                description={project.requestDescription}
+                status={project.stats}
+                budget={project.budget}
+              />
+            ))}
           </Accordion>
         </Box>
       </Flex>
