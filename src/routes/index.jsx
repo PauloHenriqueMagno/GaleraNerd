@@ -13,9 +13,6 @@ const Routes = () => {
       <Route path="/dev">
         <Dev />
       </Route>
-      <Route>
-        <ErrorPage />
-      </Route>
       <Route path="/register">
         <Register />
       </Route>
@@ -28,8 +25,11 @@ const Routes = () => {
       <Route path="/search">
         <Search />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Home />
+      </Route>
+      <Route>
+        <ErrorPage />
       </Route>
     </Switch>
   );

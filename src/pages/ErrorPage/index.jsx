@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Button, Text, Image } from "@chakra-ui/react";
-import ErrorImg from "../../assets/ErrorImg.svg";
+import errorimg from "../../assets/ErrorImg.svg";
 import HeaderComponent from "../../components/Header";
 import { useHistory } from "react-router-dom";
 
@@ -30,10 +30,10 @@ const ErrorPage = () => {
             _hover={{ bg: "red:700" }}
             onClick={() => history.push("/")}
           >
-            Tentar novamente
+            Ir para home
           </Button>
         </Box>
-        <Image scr={ErrorImg} />
+        <Image src={errorimg} />
       </Flex>
     </>
   );
