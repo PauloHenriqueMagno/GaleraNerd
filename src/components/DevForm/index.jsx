@@ -49,27 +49,41 @@ const DevForm = () => {
 
   return (
     <Box
+      border={{
+        mobile: "black solid 0.5px",
+        desktop: "black solid 2px",
+      }}
       sx={{
-        width: "200%",
+        margin: "auto",
         display: "flex",
         flexDirection: "column",
-        border: "black solid 2px",
         borderRadius: "5px",
         backgroundColor: "white",
         input: {
           bgColor: "grey.4",
-          m: "4px 0",
+          m: "9px 0",
           "::placeholder": {
-            color: "black",
+            color: "#9E9Ea7",
           },
         },
       }}
     >
-      <Heading as="h2" sx={{ m: 5 }} color="black">
+      <Heading
+        fontSize={{
+          mobile: "24px",
+          desktop: "24px",
+        }}
+        sx={{ m: 5 }}
+        color="black"
+      >
         Complete seu cadastro
       </Heading>
       <form>
         <Box
+          flexWrap={{
+            mobile: "wrap",
+            desktop: "nowrap",
+          }}
           sx={{
             p: 5,
             display: "flex",
@@ -77,7 +91,13 @@ const DevForm = () => {
             alignItems: "center",
           }}
         >
-          <Box sx={{ width: "90%" }}>
+          <Box
+            width={{
+              mobile: "100%",
+              desktop: "90%",
+            }}
+            padding={{ desktop: "15" }}
+          >
             <ComponentInput
               labelMessage="Linkedin"
               onChange={(e) => setLinkedin(e.target.value)}
@@ -100,17 +120,24 @@ const DevForm = () => {
               onChange={(e) => setTecnologyList(e.target.value)}
               placeholderMessage="Ex: HTML,JS,CSS..."
             />
-            <Box sx={{ width: "90%" }}>
+            <Box
+              width={{
+                mobile: "100%",
+                desktop: "90%",
+              }}
+              padding={{ mobile: "15" }}
+            >
               <FormLabel>O que você faz?</FormLabel>
               <Select
                 options={options}
                 isMulti
                 closeMenuOnSelect={false}
                 onChange={onSelectChange}
+                placeholder="Categorias"
               />
             </Box>
           </Box>
-          <Box sx={{ width: "90%", height: "100%" }}>
+          <Box sx={{ width: "100%", height: "100%" }}>
             <FormLabel>O que você faz?</FormLabel>
             <TextAreaInput
               rows="8"
@@ -121,11 +148,13 @@ const DevForm = () => {
           </Box>
         </Box>
         <Button
+          left={{ mobile: "40%", desktop: "45%" }}
           sx={{
             bgColor: "purple.2",
-            width: "80%",
+            color: " white",
+            width: "30%",
             transform: "translate(-50%)",
-            left: "50%",
+            m: "5",
           }}
           onClick={() => {
             console.log(data);

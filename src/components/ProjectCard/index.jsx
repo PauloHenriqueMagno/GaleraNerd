@@ -133,6 +133,7 @@ const ProjectCard = ({id, devId, projectId, description, status, budget, dev = f
                     budget &&
                     <p>{budget}</p>
                 }
+
                 <Buttons />
 
         {(dev || Status === "Aguardando orçamento") && (

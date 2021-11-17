@@ -1,7 +1,7 @@
 const style = {
   display: "flex",
   flexDirection: "column",
-  width: "90%",
+  width: "100%",
   input: {
     /* input */
     backgroundColor: "black.4",
