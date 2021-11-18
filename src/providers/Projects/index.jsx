@@ -19,7 +19,11 @@ export const ProjectsProvider = ({ children }) => {
   const getProjects = () => {
     api
       .get("projects", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
       .then((res) => setProjectList(res.data))
       .catch((err) => console.log(err));
