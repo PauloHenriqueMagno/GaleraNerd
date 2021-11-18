@@ -51,7 +51,6 @@ const RegisterForm = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
   const handleSigin = (data) => {
     registerUser(data);
-    history.push("/login");
   };
 
   return (
