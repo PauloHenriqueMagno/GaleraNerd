@@ -146,6 +146,7 @@ const ProjectCard = ({
             isOpen={isOpenRating}
             onClose={() => setIsOpenRating(false)}
             devId={devId}
+            changeProjectStatus={changeStatus}
           />
         )}
       </AccordionPanelStyled>
