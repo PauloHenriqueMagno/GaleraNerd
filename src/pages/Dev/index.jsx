@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { ProjectsContext } from "../../providers/Projects";
 import { useDev } from "../../providers/Dev";
+import { useHistory } from "react-router";
 
 const Dev = () => {
   const { devList } = useDev();
@@ -13,11 +14,14 @@ const Dev = () => {
   const [showForm, setShowForm] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("galeranerd/user")) || "";
   const [filteredProjects, setFilteredProject] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     getProjects();
     let data = devList.filter((dev) => dev.userId === userInfo.id);
-
+    if (userInfo.dev !== true) {
+      history.push("/");
+    }
     if (data.length > 0) {
       setShowForm(false);
     }
