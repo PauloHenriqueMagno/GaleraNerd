@@ -142,11 +142,11 @@ const DevForm = () => {
             </Box>
           </Box>
           <Box sx={{ width: "100%", height: "100%" }}>
-            <FormLabel>O que você faz?</FormLabel>
+            <FormLabel>Fale um pouco sobre você</FormLabel>
             <TextAreaInput
               rows="8"
               onChange={(e) => setAbout(e.target.value)}
-              placeholder="Fale mais sobre você aqui..."
+              placeholder="Fale um pouco sobre você aqui..."
               register={() => {}}
             />
           </Box>
