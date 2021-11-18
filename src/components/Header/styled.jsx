@@ -207,7 +207,7 @@ export const Button = ({
       "@media (min-width: 769px)": {
         display: display("desktop"),
         padding: "5px",
-        fontSize: "12px",
+        fontSize: "14px",
         width: "max-content",
       },
     },
