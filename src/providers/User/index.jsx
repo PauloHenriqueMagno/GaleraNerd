@@ -74,6 +74,7 @@ export const UserProvider = ({ children }) => {
           duration: 2000,
           isClosable: true,
         });
+        history.push("/login");
       })
       .catch((err) => {
         console.log(err);
