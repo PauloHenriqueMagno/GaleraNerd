@@ -1,4 +1,5 @@
 import { Accordion } from "@chakra-ui/accordion";
+import { Heading } from "@chakra-ui/layout";
 import { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import ProjectCard from "../../components/ProjectCard";
@@ -32,17 +33,23 @@ const User = () => {
           m: "0",
         }}
       >
-        {myProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            id={project.userId}
-            devId={project.devId}
-            projectId={project.id}
-            description={project.requestDescription}
-            status={project.status}
-            budget={project.budget}
-          />
-        ))}
+        {myProjects.length > 0 ? (
+          myProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              id={project.userId}
+              devId={project.devId}
+              projectId={project.id}
+              description={project.requestDescription}
+              status={project.status}
+              budget={project.budget}
+            />
+          ))
+        ) : (
+          <Heading textAlign="center" width="100vw" as="h1" size="2xl" isTruncated>
+            Você ainda não solicitou nenhum projeto
+          </Heading>
+        )}
       </Accordion>
     </>
   );

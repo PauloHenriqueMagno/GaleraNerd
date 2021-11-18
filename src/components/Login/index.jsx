@@ -8,8 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormControl } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../providers/User";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import style from "./styles";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ComponentLogin = () => {
   const { devId } = useParams();
@@ -31,6 +32,9 @@ const ComponentLogin = () => {
   const submitForm = (data) => {
     login(data, devId);
   };
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   return (
     <Box sx={style}>
@@ -54,7 +58,8 @@ const ComponentLogin = () => {
             errorMessage={errors.password?.message}
             labelMessage="Senha"
             leftIcon={<LockIcon />}
-            rightIcon={<LockIcon />}
+            type={show ? "text" : "password"}
+            rightIcon={show ? <FaEyeSlash onClick={handleClick} /> : <FaEye onClick={handleClick}/>}
             placeholderMessage="Digite sua senha"
             register={register}
             registerName={"password"}
