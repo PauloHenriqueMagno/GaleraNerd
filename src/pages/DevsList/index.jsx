@@ -31,30 +31,57 @@ const DevList = () => {
     return devList.filter((dev) => dev.categories.includes(category));
   };
 
-  const formatDevData = (filteredDevs) => {
+  const addUserToDevData = (filteredDevs) => {
     return filteredDevs.map((dev) => {
       let data = {};
-      feedbackList.forEach((feedback) => {
-        usersList.forEach((user) => {
-          if (user.id === dev.userId && dev.userId === feedback.devId) {
-            let recommendationAverage =
-              feedback.recommendation.reduce(
-                (acc, { recommendation }) => acc + recommendation,
-                0
-              ) / feedback.recommendation.length;
-
-            data = {
-              id: dev.id,
-              bio: dev.bio,
-              name: user.name,
-              recomend: recommendationAverage,
-              price: dev.hourValue,
-              services: dev.services,
-            };
-          }
-        });
+      usersList.forEach((user) => {
+        if (user.id === dev.userId) {
+          data = {
+            user,
+            dev,
+          };
+        }
       });
       return data;
+    });
+  };
+
+  const addFeedbacksToDevData = (filteredDevs) => {
+    return filteredDevs.map((dev) => {
+      let data = dev;
+      feedbackList.forEach((feedback) => {
+        if (feedback.devId === dev.user.id) {
+          data = {
+            ...dev,
+            feedback,
+          };
+        }
+      });
+      return data;
+    });
+  };
+
+  const formatDevData = (filteredDevs) => {
+    console.log(filteredDevs);
+    return filteredDevs.map(({ dev, user, feedback }) => {
+      let devRecomend = 0;
+      console.log(feedback);
+      if (feedback.recommendation.length > 0) {
+        devRecomend =
+          feedback.recommendation.reduce(
+            (acc, { recommendation }) => acc + recommendation,
+            0
+          ) / feedback.recommendation.length;
+      }
+      let formatedDevData = {
+        id: dev.id,
+        bio: dev.bio,
+        name: user.name,
+        recomend: devRecomend,
+        price: dev.hourValue,
+        services: dev.services,
+      };
+      return formatedDevData;
     });
   };
 
@@ -72,7 +99,10 @@ const DevList = () => {
       usersList.length !== 0
     ) {
       let filteredDevs = filterDevs(devList);
-      let formatedDevData = formatDevData(filteredDevs);
+      let devWithUserData = addUserToDevData(filteredDevs);
+      let divWithFeedbacksData = addFeedbacksToDevData(devWithUserData);
+      let formatedDevData = formatDevData(divWithFeedbacksData);
+
       setDevs(formatedDevData);
       setFilteredDevs(formatedDevData);
     }
@@ -109,8 +139,8 @@ const DevList = () => {
               textAlign="center"
             >
               <Text color="black" margin="30px auto">
-                Não encontramos nenhum Desenvolvedor nessa categoria, nessa
-                faixa de preço, filtre por outros valores ou busque outra
+                Não encontramos nenhum Desenvolvedor nessa categoria ou nessa
+                faixa de preço. <br /> Filtre por outros valores ou busque outra
                 categoria.
               </Text>
               <Button
@@ -143,7 +173,7 @@ const DevList = () => {
             borderRadius="5px"
             display={{ mobile: "none", desktop: "flex" }}
           >
-            <Text fontWeight="bold" fontSize="20px">
+            <Text fontWeight="bold" fontSize="20px" color="white">
               Filtros
             </Text>
           </Flex>
