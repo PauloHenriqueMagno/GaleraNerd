@@ -2,11 +2,16 @@ import DevForm from "../../components/DevForm";
 import ProjectCard from "../../components/ProjectCard";
 import HeaderComponent from "../../components/Header";
 import { Box, Flex, Accordion, Heading } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../providers/Projects";
 
 const Dev = () => {
-  const { projectList } = useContext(ProjectsContext);
+  const { projectList, getProjects } = useContext(ProjectsContext);
+
+  useEffect(() => {
+    console.log(projectList);
+    getProjects();
+  }, []);
   return (
     <>
       <HeaderComponent />
@@ -43,7 +48,7 @@ const Dev = () => {
                 devId={project.devId}
                 projectId={project.id}
                 description={project.requestDescription}
-                status={project.stats}
+                status={project.status}
                 budget={project.budget}
               />
             ))}

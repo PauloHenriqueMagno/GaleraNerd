@@ -18,7 +18,9 @@ export const ProjectsProvider = ({ children }) => {
 
   const getProjects = () => {
     api
-      .get("projects")
+      .get("projects", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => setProjectList(res.data))
       .catch((err) => console.log(err));
   };
