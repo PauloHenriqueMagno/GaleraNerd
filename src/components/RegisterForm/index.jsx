@@ -14,8 +14,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
-import { FaUserAlt } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
 import Input from "../Input";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const history = useHistory();
@@ -52,6 +53,11 @@ const RegisterForm = () => {
   const handleSigin = (data) => {
     registerUser(data);
   };
+
+  const [show, setShow] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const handleClick = () => setShow(!show);
+  const handleClickConfirm = () => setShowConfirm(!showConfirm);
 
   return (
     <Box
@@ -101,6 +107,14 @@ const RegisterForm = () => {
             leftIcon={<LockIcon />}
             registerName="password"
             errorMessage={errors.password?.message}
+            type={show ? "text" : "password"}
+            rightIcon={
+              show ? (
+                <FaEyeSlash onClick={handleClick} />
+              ) : (
+                <FaEye onClick={handleClick} />
+              )
+            }
           />
           <Input
             labelMessage="Confirme sua senha"
@@ -109,6 +123,14 @@ const RegisterForm = () => {
             registerName="passwordConfirm"
             errorMessage={errors.passwordConfirm?.message}
             leftIcon={<LockIcon />}
+            type={showConfirm ? "text" : "password"}
+            rightIcon={
+              showConfirm ? (
+                <FaEyeSlash onClick={handleClickConfirm} />
+              ) : (
+                <FaEye onClick={handleClickConfirm} />
+              )
+            }
           />
           <Checkbox
             size="lg"
