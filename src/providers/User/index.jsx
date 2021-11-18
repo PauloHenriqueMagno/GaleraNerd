@@ -22,10 +22,7 @@ export const UserProvider = ({ children }) => {
   const [usersList, setUserslist] = useState([]);
 
   const getUsersList = () => {
-    api
-      .get("users")
-      .then((response) => setUserslist(response.data))
-      .catch((err) => console.log(err));
+    api.get("users").then((response) => setUserslist(response.data));
   };
 
   const login = (data, devId) => {
@@ -44,7 +41,6 @@ export const UserProvider = ({ children }) => {
           isClosable: true,
         });
         setToken(res.data.accessToken);
-        console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
         getProjects();
@@ -59,7 +55,6 @@ export const UserProvider = ({ children }) => {
         // res.data.user.dev ? history.push("/dev") : history.push("/user");
       })
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Houve algum problema ao realizar o login",
@@ -84,7 +79,6 @@ export const UserProvider = ({ children }) => {
         history.push("/login");
       })
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Houve algum problema no seu cadastro",

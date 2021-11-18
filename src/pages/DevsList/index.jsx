@@ -62,10 +62,8 @@ const DevList = () => {
   };
 
   const formatDevData = (filteredDevs) => {
-    console.log(filteredDevs);
     return filteredDevs.map(({ dev, user, feedback }) => {
       let devRecomend = 0;
-      console.log(feedback);
       if (feedback.recommendation.length > 0) {
         devRecomend =
           feedback.recommendation.reduce(
@@ -182,7 +180,6 @@ const DevList = () => {
               Preço:
             </Text>
             <RangeSlider
-              aria-label={["min", "max"]}
               min={0}
               max={200}
               defaultValue={filterValue}

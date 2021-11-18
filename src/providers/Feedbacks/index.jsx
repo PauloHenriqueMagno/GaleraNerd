@@ -6,26 +6,14 @@ export const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
   const toast = useToast();
-  const [token, setToken] = useState(
+  const [token] = useState(
     JSON.parse(localStorage.getItem("galeranerd/token")) || ""
   );
-  const [userInfo, setUserInfo] = useState(
-    JSON.parse(localStorage.getItem("galeranerd/user")) || {}
-  );
-  const [devId, setDevId] = useState(0);
+
   const [feedbackList, setFeedbackList] = useState([]);
 
-  const getDevId = () => {
-    api
-      .get(`dev?userId=${userInfo.id}`)
-      .then((res) => setDevId(res.data.id))
-      .catch((err) => console.log(err));
-  };
   const getFeedbacks = () => {
-    api
-      .get("feedbacks")
-      .then((res) => setFeedbackList(res.data))
-      .catch((err) => console.log(err));
+    api.get("feedbacks").then((res) => setFeedbackList(res.data));
   };
 
   const createFeedback = (data) => {
@@ -39,7 +27,6 @@ export const FeedbackProvider = ({ children }) => {
       })
       .then()
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Não foi possível criar",
@@ -56,7 +43,6 @@ export const FeedbackProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
         toast({
           position: "top-left",
           title: "Editado com sucesso",
@@ -66,7 +52,6 @@ export const FeedbackProvider = ({ children }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Não foi possível editar",

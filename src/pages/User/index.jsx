@@ -11,14 +11,8 @@ const User = () => {
   const { projectList, getProjects } = useContext(ProjectsContext);
   useEffect(() => {
     getProjects();
-    console.log(userInfo.id);
   }, []);
-  console.log(projectList);
-  // console.log();
-  console.log(
-    "projetos filtrados: ",
-    projectList.filter((project) => project.userId === userInfo.id)
-  );
+
   const myProjects = projectList.filter(
     (project) => project.userId === userInfo.id
   );
