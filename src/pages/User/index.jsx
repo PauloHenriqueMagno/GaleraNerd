@@ -1,6 +1,7 @@
 import { Accordion } from "@chakra-ui/accordion";
 import { Heading } from "@chakra-ui/layout";
 import { useContext, useEffect } from "react";
+import { useHistory } from "react-router";
 import Header from "../../components/Header";
 import ProjectCard from "../../components/ProjectCard";
 import { ProjectsContext } from "../../providers/Projects";
@@ -9,8 +10,15 @@ import { UserContext } from "../../providers/User";
 const User = () => {
   const { userInfo } = useContext(UserContext);
   const { projectList, getProjects } = useContext(ProjectsContext);
+  const history = useHistory();
   useEffect(() => {
     getProjects();
+    if (
+      userInfo.dev === true ||
+      !!JSON.parse(localStorage.getItem("galeranerd/token")) === false
+    ) {
+      history.push("/");
+    }
   }, []);
 
   const myProjects = projectList.filter(
@@ -40,7 +48,7 @@ const User = () => {
           myProjects.map((project) => (
             <ProjectCard
               key={project.id}
-              id={project.userId}
+              id={project.devId}
               devId={project.devId}
               projectId={project.id}
               description={project.requestDescription}

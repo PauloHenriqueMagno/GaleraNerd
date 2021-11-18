@@ -9,18 +9,15 @@ export const DevProvider = ({ children }) => {
   const { createFeedback } = useFeedbacks();
   const toast = useToast();
 
-  const [userInfo] = useState(
-    JSON.parse(localStorage.getItem("galeranerd/user")) || {}
-  );
   const [devList, setDevList] = useState([]);
 
   const getDevList = () => {
     api.get("dev").then((res) => setDevList(res.data));
   };
 
-  const editProfile = (data) => {
+  const editProfile = (data, id) => {
     api
-      .patch(`dev/${userInfo.id}`, data, {
+      .patch(`dev/${id}`, data, {
         headers: {
           Authorization: `Bearer ${JSON.parse(
             localStorage.getItem("galeranerd/token")

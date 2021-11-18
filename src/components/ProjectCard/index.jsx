@@ -136,6 +136,7 @@ const ProjectCard = ({
 
         {(dev || Status === "Aguardando orçamento") && (
           <BudgetModal
+            ChangeStatus={changeStatus}
             isOpen={isOpen}
             onClose={onClose}
             projectId={projectId}

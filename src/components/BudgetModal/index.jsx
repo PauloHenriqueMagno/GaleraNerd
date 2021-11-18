@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { FaFileAlt } from "react-icons/fa";
 import { useProjects } from "../../providers/Projects";
 
-const BudgetModal = ({ isOpen, onOpen, onClose, projectId }) => {
+const BudgetModal = ({ isOpen, onOpen, onClose, projectId, ChangeStatus }) => {
   const { editProject } = useProjects();
 
   const modalSchema = yup.object().shape({
@@ -42,6 +42,7 @@ const BudgetModal = ({ isOpen, onOpen, onClose, projectId }) => {
     editProject(requestData);
     onClose();
     resetField("budget");
+    ChangeStatus();
   };
 
   const submitCancel = () => {
