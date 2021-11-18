@@ -33,6 +33,15 @@ const User = () => {
           m: "0",
         }}
       >
+        <Heading
+          textAlign="center"
+          width="100vw"
+          as="h1"
+          size="2xl"
+          isTruncated
+        >
+          Meus projetos
+        </Heading>
         {myProjects.length > 0 ? (
           myProjects.map((project) => (
             <ProjectCard
@@ -46,7 +55,16 @@ const User = () => {
             />
           ))
         ) : (
-          <Heading textAlign="center" width="100vw" as="h1" size="2xl" isTruncated>
+          <Heading
+            textAlign="center"
+            fontSize="20px"
+            pt="50px"
+            color="purple.2"
+            width="100vw"
+            as="h1"
+            size="2xl"
+            isTruncated
+          >
             Você ainda não solicitou nenhum projeto
           </Heading>
         )}

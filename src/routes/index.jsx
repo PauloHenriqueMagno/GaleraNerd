@@ -36,9 +36,6 @@ const Routes = () => {
       <Route path="/dev-profile/:id">
         <DevProfile />
       </Route>
-      <Route path="/">
-        <Home />
-      </Route>
       <Route path="/user">
         <User />
       </Route>
