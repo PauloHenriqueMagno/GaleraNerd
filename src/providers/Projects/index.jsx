@@ -39,7 +39,7 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        getProjects();
         toast({
           position: "top-left",
           title: "Editado com sucesso",
@@ -70,7 +70,7 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        getProjects();
         toast({
           position: "top-left",
           title: "Criado com sucesso",
