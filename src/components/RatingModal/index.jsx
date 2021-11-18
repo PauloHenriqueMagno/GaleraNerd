@@ -67,6 +67,8 @@ const RatingModal = ({ isOpen, onClose, devId }) => {
     });
     devFeedbacks[0].comment.push({
       userId: userInfo.id,
+      userName: userInfo.name,
+      recommend: Number(data.recommendation),
       comment: data.comment,
     });
 
