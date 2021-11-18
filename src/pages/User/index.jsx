@@ -11,6 +11,13 @@ const User = () => {
     getProjects();
   }, []);
   console.log(projectList);
+  console.log();
+  console.log(
+    projectList.filter(
+      (project) =>
+        project.id === JSON.parse(localStorage.getItem("galeranerd/user")).id
+    )
+  );
   return (
     <>
       <Header />
@@ -23,16 +30,15 @@ const User = () => {
         }}
       >
         {projectList.map((project) => (
-          <Box key={project.id}>
-            <ProjectCard
-              id={project.userId}
-              devId={project.devId}
-              projectId={project.id}
-              description={project.requestDescription}
-              status={project.status}
-              budget={project.budget}
-            />
-          </Box>
+          <ProjectCard
+            key={project.id}
+            id={project.userId}
+            devId={project.devId}
+            projectId={project.id}
+            description={project.requestDescription}
+            status={project.status}
+            budget={project.budget}
+          />
         ))}
       </Accordion>
     </>
