@@ -173,7 +173,7 @@ const DevList = () => {
             borderRadius="5px"
             display={{ mobile: "none", desktop: "flex" }}
           >
-            <Text fontWeight="bold" fontSize="20px">
+            <Text fontWeight="bold" fontSize="20px" color="white">
               Filtros
             </Text>
           </Flex>
