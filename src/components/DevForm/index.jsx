@@ -7,10 +7,9 @@ import { DevContext } from "../../providers/Dev";
 import TextAreaInput from "../TextAreaInput";
 import { FormLabel } from "@chakra-ui/form-control";
 
-const DevForm = () => {
+const DevForm = ({ setShowForm }) => {
   const { devRegister, getDevList, devList, editProfile } =
     useContext(DevContext);
-  const [devData, setDevData] = useState({});
 
   const options = [
     { value: "appDevelopment", label: "Desenvolvimento de Aplicativos" },
@@ -29,6 +28,7 @@ const DevForm = () => {
   const [services, setServices] = useState([]);
   const [tecnologyList, setTecnologyList] = useState("");
   const [about, setAbout] = useState("");
+  const [formTitle, setFormTitle] = useState("Complete seu cadastro");
 
   const onSelectChange = (value) => {
     setServices(value);
@@ -69,6 +69,7 @@ const DevForm = () => {
     if (data.categories.length > 0 && price > 0) {
       editProfile(data);
     }
+    setShowForm(false);
   };
 
   useEffect(() => {
@@ -77,8 +78,9 @@ const DevForm = () => {
 
   useEffect(() => {
     let data = devList.filter((dev) => dev.userId === userInfo.id);
-    console.log(data);
+
     if (data.length > 0) {
+      setFormTitle("Edite suas informações");
       setLinkedin(data[0].contacts.linkedin);
       setGitHub(data[0].contacts.gitHub);
       setPrice(data[0].hourValue);
@@ -97,8 +99,6 @@ const DevForm = () => {
       setAbout(data[0].bio);
     }
   }, [devList]);
-
-  console.log(services);
 
   return (
     <Box
@@ -134,7 +134,7 @@ const DevForm = () => {
         sx={{ m: 5 }}
         color="black"
       >
-        Complete seu cadastro
+        {formTitle}
       </Heading>
       <form>
         <Box
