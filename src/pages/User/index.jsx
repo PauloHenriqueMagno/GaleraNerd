@@ -1,12 +1,26 @@
 import { Accordion } from "@chakra-ui/accordion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import ProjectCard from "../../components/ProjectCard";
 import { ProjectsContext } from "../../providers/Projects";
+import { UserContext } from "../../providers/User";
 
 const User = () => {
-  const { projectList } = useContext(ProjectsContext);
+  const { userInfo } = useContext(UserContext);
+  const { projectList, getProjects } = useContext(ProjectsContext);
+  useEffect(() => {
+    getProjects();
+    console.log(userInfo.id);
+  }, []);
   console.log(projectList);
+  // console.log();
+  console.log(
+    "projetos filtrados: ",
+    projectList.filter((project) => project.userId === userInfo.id)
+  );
+  const myProjects = projectList.filter(
+    (project) => project.userId === userInfo.id
+  );
   return (
     <>
       <Header />
@@ -18,59 +32,15 @@ const User = () => {
           m: "0",
         }}
       >
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Em andamento"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Recusado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
-        {projectList.map((project) => (
+        {myProjects.map((project) => (
           <ProjectCard
-            id="1"
-            devId="2"
-            projectId="3"
-            description="quero café"
-            status="Finalizado"
-            budget="2 conto ta bão"
+            key={project.id}
+            id={project.userId}
+            devId={project.devId}
+            projectId={project.id}
+            description={project.requestDescription}
+            status={project.status}
+            budget={project.budget}
           />
         ))}
       </Accordion>

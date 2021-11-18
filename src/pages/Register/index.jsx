@@ -38,7 +38,7 @@ const Register = () => {
       </Button>
       <Flex
         align="center"
-        justifyContent={{ mobile: "center", desktop: "end" }}
+        justifyContent={{ mobile: "center", desktop: "flex-end" }}
       >
         <RegisterForm />
         <Image

@@ -2,10 +2,15 @@ import api from "../../services";
 import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import { useDev } from "../Dev";
+import { useProjects } from "../Projects";
 
 export const UserContext = createContext();
+
 export const UserProvider = ({ children }) => {
   const history = useHistory();
+  const { getDevList } = useDev();
+  const { getProjects } = useProjects();
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("galeranerd/token")) || ""
   );
@@ -42,8 +47,10 @@ export const UserProvider = ({ children }) => {
         console.log(res);
         localStorage.setItem("galeranerd/user", JSON.stringify(res.data.user));
         setUserInfo(res.data.user);
+        getProjects();
         if (!!res.data.user.dev) {
           history.push("/dev");
+          getDevList();
         } else if (devId !== undefined) {
           history.push(`/dev-profile/${devId}`);
         } else {

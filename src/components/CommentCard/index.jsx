@@ -1,13 +1,14 @@
 import { Flex, Text, Box, Avatar } from "@chakra-ui/react";
 import StarAverage from "../StarAverage";
 
-const CommentCard = ({ userComment, userName, userRate }) => {
+const CommentCard = ({ userComment, userName, userRate, ...res}) => {
   return (
     <Flex
+      color="white"
       bg="purple.2"
-      w={{ mobile: "90%", desktop: "925px" }}
+      w="100%"
       p="43px 34px"
-      margin={{ mobile: "0 auto", desktop: "0" }}
+      {...res}
     >
       <Box display={{ mobile: "none", desktop: "flex" }} marginRight="35px">
         <Avatar w="55px" h="55px" />

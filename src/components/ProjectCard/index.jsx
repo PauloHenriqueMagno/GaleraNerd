@@ -52,12 +52,9 @@ const ProjectCard = ({
   };
 
   const Buttons = () => {
-    if (Status === "Finalizado") {
-      return <ButtonStyled disabled={true}>Projeto Finalizado</ButtonStyled>;
-    }
     if (!dev && Status === "Concluido") {
       return (
-        <ButtonStyled onClick={() => setIsOpenRating(true)}>
+        <ButtonStyled onClick={() => setIsOpenRating(true)} marginLeft="auto">
           Finalizar projeto e avaliar
         </ButtonStyled>
       );
@@ -114,11 +111,7 @@ const ProjectCard = ({
         </ButtonStyled>
       );
     } else {
-      return (
-        <ButtonStyled disabled={true} marginLeft="auto">
-          Pedido recusado
-        </ButtonStyled>
-      );
+      return <></>;
     }
   };
 
@@ -129,7 +122,7 @@ const ProjectCard = ({
   }, []);
 
   return (
-    <AccordionItemStyled key={projectId} status={Status} {...rest}>
+    <AccordionItemStyled status={Status} {...rest}>
       <AccordionButtonStyled>
         <h3>{name}</h3>
         <p>{Status}</p>

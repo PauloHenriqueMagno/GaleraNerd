@@ -3,6 +3,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
+import DevProfile from "../pages/DevProfile";
 import DevList from "../pages/DevsList";
 import Dev from "../pages/Dev";
 import ErrorPage from "../pages/ErrorPage";
@@ -31,6 +32,12 @@ const Routes = () => {
       </Route>
       <Route path="/search">
         <Search />
+      </Route>
+      <Route path="/dev-profile/:id">
+        <DevProfile />
+      </Route>
+      <Route path="/">
+        <Home />
       </Route>
       <Route path="/user">
         <User />
