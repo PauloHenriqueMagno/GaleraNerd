@@ -66,19 +66,29 @@ export const AccordionPanelStyled = chakra(AccordionPanel, {
 });
 
 export const ButtonStyled = ({children, color, ...rest}) => {
-    const Button = chakra("button", {
-        baseStyle: {
-            background: (color==="red"? "error": "purple.2"),
-            width: "max-content",
-            padding: "10px",
-            borderRadius: "5px",
-            color: "white",
+  const Button = chakra("button", {
+    baseStyle: {
+      background: (color==="red"? "error": "purple.2"),
+      width: "max-content",
+      padding: "10px",
+      borderRadius: "5px",
+      color: "white",
 
-            _hover: {
-                filter: "brightness(50%)"
-            },
+      _hover: {
+        filter: "brightness(130%)"
+      },
+
+      _disabled: {
+        _hover: {
+          filter: "brightness(100%)"
         },
-    });
+      },
+
+      _active: {
+        filter: "brightness(80%)"
+      },
+    },
+  });
 
   return <Button {...rest}>{children}</Button>;
 };
