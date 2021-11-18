@@ -7,10 +7,6 @@ export const ProjectsContext = createContext();
 export const ProjectsProvider = ({ children }) => {
   const toast = useToast();
 
-  //   const [userInfo, setUserInfo] = useState(
-  //     JSON.parse(localStorage.getItem("galeranerd/user")) || {}
-  //   );
-
   const [projectList, setProjectList] = useState([]);
 
   const getProjects = () => {
@@ -35,6 +31,7 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
+        getProjects();
         toast({
           position: "top-left",
           title: "Editado com sucesso",
@@ -64,6 +61,7 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
+        getProjects();
         toast({
           position: "top-left",
           title: "Criado com sucesso",

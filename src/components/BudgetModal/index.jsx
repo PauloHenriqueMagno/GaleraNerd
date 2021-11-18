@@ -36,7 +36,7 @@ const BudgetModal = ({ isOpen, onOpen, onClose, projectId }) => {
   const submitBudget = (data) => {
     const requestData = {
       id: projectId,
-      status: "Aprovação pendente",
+      status: "Confirmar o orçamento",
       budget: data.budget,
     };
     editProject(requestData);

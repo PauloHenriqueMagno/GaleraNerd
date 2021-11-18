@@ -95,6 +95,7 @@ const Dev = () => {
                     description={project.requestDescription}
                     status={project.status}
                     budget={project.budget}
+                    dev={userInfo.dev}
                   />
                 ))}
               </>
