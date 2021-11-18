@@ -6,9 +6,6 @@ export const ProjectsContext = createContext();
 
 export const ProjectsProvider = ({ children }) => {
   const toast = useToast();
-  const [token, setToken] = useState(
-    JSON.parse(localStorage.getItem("galeranerd/token")) || ""
-  );
 
   //   const [userInfo, setUserInfo] = useState(
   //     JSON.parse(localStorage.getItem("galeranerd/user")) || {}
@@ -25,8 +22,7 @@ export const ProjectsProvider = ({ children }) => {
           )}`,
         },
       })
-      .then((res) => setProjectList(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => setProjectList(res.data));
   };
 
   const editProject = (data) => {
@@ -39,7 +35,6 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         toast({
           position: "top-left",
           title: "Editado com sucesso",
@@ -49,7 +44,6 @@ export const ProjectsProvider = ({ children }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Não foi possível editar",
@@ -70,7 +64,6 @@ export const ProjectsProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         toast({
           position: "top-left",
           title: "Criado com sucesso",
@@ -80,7 +73,6 @@ export const ProjectsProvider = ({ children }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         toast({
           position: "top-left",
           title: "Ops! Não foi possível criar",

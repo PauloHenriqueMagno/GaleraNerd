@@ -20,7 +20,6 @@ const DevProfile = () => {
   const [feedback] = feedbackList.filter((item) => item.devId === dev.userId);
   const comment = feedback.comment;
   const { isOpen, onClose, onOpen } = useDisclosure();
-  console.log(feedback, dev);
 
   return (
     <Box minH="100vh" w="100vw" maxW="1280px" position="relative" m="auto">

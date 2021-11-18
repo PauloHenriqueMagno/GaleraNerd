@@ -8,7 +8,7 @@ import { ProjectsContext } from "../../providers/Projects";
 import { useDev } from "../../providers/Dev";
 
 const Dev = () => {
-  const { getDevList, devList } = useDev();
+  const { devList } = useDev();
   const { projectList, getProjects } = useContext(ProjectsContext);
   const [showForm, setShowForm] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("galeranerd/user")) || "";
@@ -25,8 +25,6 @@ const Dev = () => {
   const filteredProjects = projectList.filter(
     (project) => project.devId === userInfo.id
   );
-
-  console.log("oi", filteredProjects.length);
 
   return (
     <>

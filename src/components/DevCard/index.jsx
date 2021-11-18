@@ -7,7 +7,6 @@ import {
   DevCardTag,
   DevCardHeaderDevIcon,
 } from "./styled";
-import { Text } from "@chakra-ui/react";
 import AuthDialog from "../AuthDialog";
 import { useHistory } from "react-router";
 import StarAverage from "../StarAverage";
@@ -19,12 +18,6 @@ const DevCard = ({ dev }) => {
   const [showDialogue, setShowDialogue] = useState(false);
 
   const { name, bio, services, price, recomend, id } = dev;
-
-  // const rate = (
-  //   recomend.reduce((total, atual) => {
-  //     return { rating: total.rating + atual.rating };
-  //   }).rating / recomend.length
-  // ).toFixed(1);
 
   const handleNavigate = () => {
     let token = localStorage.getItem("galeranerd/token");
