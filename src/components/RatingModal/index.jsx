@@ -22,7 +22,7 @@ import { useFeedbacks } from "../../providers/Feedbacks";
 import { useEffect } from "react";
 import { useUser } from "../../providers/User";
 
-const RatingModal = ({ isOpen, onClose, devId }) => {
+const RatingModal = ({ isOpen, onClose, devId, changeProjectStatus }) => {
   const { userInfo } = useUser();
   const { feedbackList, getFeedbacks, editFeedback } = useFeedbacks();
 
@@ -73,6 +73,7 @@ const RatingModal = ({ isOpen, onClose, devId }) => {
     editFeedback(devFeedbacks[0]);
     onClose();
     resetField("");
+    changeProjectStatus();
   };
 
   const submitCancel = () => {
