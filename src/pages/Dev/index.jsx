@@ -26,6 +26,8 @@ const Dev = () => {
     (project) => project.devId === userInfo.id
   );
 
+  console.log("oi", filteredProjects.length);
+
   return (
     <>
       <HeaderComponent />
@@ -77,16 +79,28 @@ const Dev = () => {
             Meus projetos
           </Heading>
           <Accordion mt="50px" defaultIndex={[0]} allowMultiple>
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                id={project.userId}
-                devId={project.devId}
-                projectId={project.id}
-                description={project.requestDescription}
-                status={project.status}
-                budget={project.budget}
-              />
-            ))}
+            {filteredProjects.length === 0 ? (
+              <Heading
+                fontSize="20px"
+                align={{ mobile: "center", desktop: "center" }}
+                color="purple.2"
+              >
+                Você ainda não possui nenhum projeto em andamento.
+              </Heading>
+            ) : (
+              <>
+                {filteredProjects.map((project) => (
+                  <ProjectCard
+                    id={project.userId}
+                    devId={project.devId}
+                    projectId={project.id}
+                    description={project.requestDescription}
+                    status={project.status}
+                    budget={project.budget}
+                  />
+                ))}
+              </>
+            )}
           </Accordion>
         </Box>
       </Flex>
