@@ -122,7 +122,7 @@ const ProjectCard = ({
   }, []);
 
   return (
-    <AccordionItemStyled key={projectId} status={Status} {...rest}>
+    <AccordionItemStyled status={Status} {...rest}>
       <AccordionButtonStyled>
         <h3>{name}</h3>
         <p>{Status}</p>

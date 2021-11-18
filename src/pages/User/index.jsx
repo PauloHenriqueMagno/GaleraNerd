@@ -1,16 +1,26 @@
 import { Accordion } from "@chakra-ui/accordion";
-import { Box } from "@chakra-ui/layout";
 import { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import ProjectCard from "../../components/ProjectCard";
 import { ProjectsContext } from "../../providers/Projects";
+import { UserContext } from "../../providers/User";
 
 const User = () => {
+  const { userInfo } = useContext(UserContext);
   const { projectList, getProjects } = useContext(ProjectsContext);
   useEffect(() => {
     getProjects();
+    console.log(userInfo.id);
   }, []);
   console.log(projectList);
+  // console.log();
+  console.log(
+    "projetos filtrados: ",
+    projectList.filter((project) => project.userId === userInfo.id)
+  );
+  const myProjects = projectList.filter(
+    (project) => project.userId === userInfo.id
+  );
   return (
     <>
       <Header />
@@ -22,17 +32,16 @@ const User = () => {
           m: "0",
         }}
       >
-        {projectList.map((project) => (
-          <Box key={project.id}>
-            <ProjectCard
-              id={project.userId}
-              devId={project.devId}
-              projectId={project.id}
-              description={project.requestDescription}
-              status={project.status}
-              budget={project.budget}
-            />
-          </Box>
+        {myProjects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            id={project.userId}
+            devId={project.devId}
+            projectId={project.id}
+            description={project.requestDescription}
+            status={project.status}
+            budget={project.budget}
+          />
         ))}
       </Accordion>
     </>
