@@ -32,7 +32,11 @@ export const ProjectsProvider = ({ children }) => {
   const editProject = (data) => {
     api
       .patch(`projects/${data.id}`, data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
       .then((res) => {
         console.log(res);
@@ -59,7 +63,11 @@ export const ProjectsProvider = ({ children }) => {
   const createProject = (data) => {
     api
       .post("projects", data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
       .then((res) => {
         console.log(res);
