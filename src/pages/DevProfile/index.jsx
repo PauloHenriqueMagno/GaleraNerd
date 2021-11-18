@@ -155,18 +155,28 @@ const DevProfile = () => {
                 Pedir um orçamento
               </Button>
             </Box>
-            <Box>
-              {comment.map((item) => (
-                <CommentCard
-                  my="2"
-                  key={item.userId}
-                  id={item.userId}
-                  userRate={item.recommend}
-                  userName={item.userName}
-                  userComment={item.comment}
-                />
-              ))}
-            </Box>
+            {comment.length === 0 ? (
+              <Heading
+                fontSize="20px"
+                align={{ mobile: "center", desktop: "center" }}
+                color="purple.2"
+              >
+                Este dev ainda não possui nenhum feedback.
+              </Heading>
+            ) : (
+              <Box>
+                {comment.map((item) => (
+                  <CommentCard
+                    my="2"
+                    key={item.userId}
+                    id={item.userId}
+                    userRate={item.recommend}
+                    userName={item.userName}
+                    userComment={item.comment}
+                  />
+                ))}
+              </Box>
+            )}
           </Box>
         </Box>
       </Flex>
