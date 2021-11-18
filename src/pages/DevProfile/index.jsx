@@ -7,6 +7,7 @@ import { useDev } from "../../providers/Dev";
 import { useUser } from "../../providers/User";
 import { useFeedbacks } from "../../providers/Feedbacks";
 import NewProjectModal from "../../components/NewProjectModal"
+import { DevCardTag, DevCardTags } from "../../components/DevCard/styled.jsx"
 
 const DevProfile = () => {
   const { id } = useParams();
@@ -33,12 +34,12 @@ const DevProfile = () => {
           <Box p="8" bg="purple.2">
             <Flex align="center" mb="4">
               <Avatar name={user.name} size="xl" mr="4"/>
-              <Heading as="h2" color="white" size="lg">{user.name}</Heading>
             </Flex>
+              <Heading as="h2" color="white" size="lg">{user.name}</Heading>
             <StarAverage rate={feedback.recommendation.reduce((previous, current) => previous + current.recommendation, 0) / feedback.recommendation.length} id="z" />
           </Box>
           <Box px="4" maxW={{mobile: "100%", desktop: "60%"}}>
-            <Text my="4">
+            <Text my="4" color="black.2">
              {dev.bio} 
             </Text>
             <Box
@@ -59,9 +60,9 @@ const DevProfile = () => {
               <Text mt="4" size="16px">GitHub:</Text>
               <Text size="14px" color="purple.1">{dev.contacts.gitHub}</Text>
               <Text mt="4" size="16px">Preço por hora:</Text>
-              <Text size="14px" color="purple.1">{dev.hourValue}</Text>
+              <Text size="14px" color="purple.1" fontWeight="bold">{dev.hourValue} /h</Text>
               <Text mt="4" size="16px">Tecnologias:</Text>
-              <Text size="14px" color="purple.1">{dev.services[0]}</Text>
+              <DevCardTags>{dev.services.map(DevCardTag)}</DevCardTags>
               <Text mt="4" size="16px">Avaliação:</Text>
               <Flex justify="space-around">
                 <Box>
