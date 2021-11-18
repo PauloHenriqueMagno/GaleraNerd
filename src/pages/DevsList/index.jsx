@@ -139,8 +139,8 @@ const DevList = () => {
               textAlign="center"
             >
               <Text color="black" margin="30px auto">
-                Não encontramos nenhum Desenvolvedor nessa categoria, nessa
-                faixa de preço, filtre por outros valores ou busque outra
+                Não encontramos nenhum Desenvolvedor nessa categoria ou nessa
+                faixa de preço. <br /> Filtre por outros valores ou busque outra
                 categoria.
               </Text>
               <Button
