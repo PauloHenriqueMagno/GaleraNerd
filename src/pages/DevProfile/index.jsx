@@ -164,11 +164,11 @@ const DevProfile = () => {
               </Heading>
             ) : (
               <Box>
-                {comment.map((item) => (
+                {comment.map((item, i) => (
                   <CommentCard
                     my="2"
-                    key={item.userId}
-                    id={item.userId}
+                    key={i}
+                    id={i}
                     userRate={item.recommend}
                     userName={item.userName}
                     userComment={item.comment}

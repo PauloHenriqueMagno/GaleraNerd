@@ -12,6 +12,7 @@ const Dev = () => {
   const { projectList, getProjects } = useContext(ProjectsContext);
   const [showForm, setShowForm] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("galeranerd/user")) || "";
+  const [filteredProjects, setFilteredProject] = useState([]);
 
   useEffect(() => {
     getProjects();
@@ -22,9 +23,11 @@ const Dev = () => {
     }
   }, []);
 
-  const filteredProjects = projectList.filter(
-    (project) => project.devId === userInfo.id
-  );
+  useEffect(() => {
+    setFilteredProject(
+      projectList.filter((project) => project.devId === userInfo.id)
+    );
+  }, [projectList]);
 
   return (
     <>

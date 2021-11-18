@@ -29,6 +29,7 @@ const DevForm = ({ setShowForm }) => {
   const [tecnologyList, setTecnologyList] = useState("");
   const [about, setAbout] = useState("");
   const [formTitle, setFormTitle] = useState("Complete seu cadastro");
+  const [devId, setDevId] = useState("");
 
   const onSelectChange = (value) => {
     setServices(value);
@@ -68,7 +69,7 @@ const DevForm = ({ setShowForm }) => {
       services: tecnologyList.split(","),
     };
     if (data.categories.length > 0 && price > 0) {
-      editProfile(data);
+      editProfile(data, devId);
     }
     setShowForm(false);
   };
@@ -81,6 +82,7 @@ const DevForm = ({ setShowForm }) => {
     let data = devList.filter((dev) => dev.userId === userInfo.id);
 
     if (data.length > 0) {
+      setDevId(data[0].id);
       setFormTitle("Edite suas informações");
       setLinkedin(data[0].contacts.linkedin);
       setGitHub(data[0].contacts.gitHub);

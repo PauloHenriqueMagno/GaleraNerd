@@ -32,13 +32,6 @@ export const ProjectsProvider = ({ children }) => {
       })
       .then((res) => {
         getProjects();
-        toast({
-          position: "top-left",
-          title: "Editado com sucesso",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
       })
       .catch((err) => {
         toast({
