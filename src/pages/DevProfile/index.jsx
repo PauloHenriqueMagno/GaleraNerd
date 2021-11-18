@@ -17,7 +17,7 @@ const DevProfile = () => {
   const { feedbackList } = useFeedbacks();
   const [dev] = devList.filter((item) => item.id === Number(id));
   const [user] = usersList.filter((item) => item.id === dev.userId);
-  const [feedback] = feedbackList.filter((item) => item.devId === Number(id));
+  const [feedback] = feedbackList.filter((item) => item.devId === dev.userId);
   const comment = feedback.comment;
   const { isOpen, onClose, onOpen } = useDisclosure();
   console.log(feedback, dev);
