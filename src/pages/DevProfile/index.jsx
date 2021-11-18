@@ -16,6 +16,7 @@ const DevProfile = () => {
   const [dev] = devList.filter((item) =>        item.id === Number(id))
   const [user] = usersList.filter((item) => item.id === dev.userId)
   const [feedback] = feedbackList.filter((item) => item.devId === Number(id))
+  const comment = feedback.comment
   console.log(feedback)
 
   return (
@@ -34,7 +35,7 @@ const DevProfile = () => {
               <Avatar name={user.name} size="xl" mr="4"/>
               <Heading as="h2" color="white" size="lg">{user.name}</Heading>
             </Flex>
-            <StarAverage rate="1" />
+            <StarAverage rate={feedback.recommendation.reduce((previous, current) => previous + current.recommendation, 0) / feedback.recommendation.length} id="z" />
           </Box>
           <Box px="4" maxW={{mobile: "100%", desktop: "60%"}}>
             <Text my="4">
@@ -65,15 +66,15 @@ const DevProfile = () => {
               <Flex justify="space-around">
                 <Box>
                   <Text mb="2" size="14px" color="purple.1">Média de preço:</Text>
-                  <StarAverage rate="3" />
+                  <StarAverage rate={feedback.price.reduce((previous, current) => previous + current.price, 0) / feedback.price.length}  id="a" />
                 </Box>
                 <Box>
                   <Text mb="2" size="14px" color="purple.1">Atendimento:</Text>
-                  <StarAverage rate="3" />
+                  <StarAverage rate={feedback.attendance.reduce((previous, current) => previous + current.attendance, 0) / feedback.attendance.length} id="b"/>
                 </Box>
                 <Box>
                   <Text mb="2" size="14px" color="purple.1">Recomendação:</Text>
-                  <StarAverage rate="3" />
+                  <StarAverage rate={feedback.recommendation.reduce((previous, current) => previous + current.recommendation, 0) / feedback.recommendation.length} id="c" />
                 </Box>
               </Flex>
               <Button
@@ -87,18 +88,17 @@ const DevProfile = () => {
               </Button>
 
             </Box>
-            <Box>
-              <CommentCard 
-                userRate={feedback.recommendation[0].attendence}
-                userName={user.name}
-                userComment={feedback.comment[0].comment}
-              /> 
-              <CommentCard 
-                my="10"
-                userRate={feedback.recommendation[1].recommendation}
-                userName={user.name} 
-                userComment={feedback.comment[1].comment}
-              />
+            <Box>       
+              {comment.map((item) => 
+                <CommentCard 
+                  my="2"
+                  key={item.userId}
+                  id={item.userId}
+                  userRate={item.recommend}
+                  userName={item.userName}
+                  userComment={item.comment}
+                /> 
+              )}
             </Box>
           </Box>
         </Box>
