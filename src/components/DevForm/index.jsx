@@ -96,7 +96,7 @@ const DevForm = ({ setShowForm }) => {
           return categoryOnOption;
         })
       );
-      setTecnologyList(data[0].services.join(", "));
+      setTecnologyList(data[0].services.join(","));
       setAbout(data[0].bio);
     }
   }, [devList]);
