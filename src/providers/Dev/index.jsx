@@ -30,7 +30,11 @@ export const DevProvider = ({ children }) => {
   const editProfile = (data) => {
     api
       .patch(`dev/${userInfo.id}`, data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
       .then((res) => {
         console.log(res);

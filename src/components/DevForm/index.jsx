@@ -2,13 +2,15 @@ import { Box, Heading } from "@chakra-ui/layout";
 import ComponentInput from "../Input/index";
 import { Button } from "@chakra-ui/button";
 import Select from "react-select";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { DevContext } from "../../providers/Dev";
 import TextAreaInput from "../TextAreaInput";
 import { FormLabel } from "@chakra-ui/form-control";
 
 const DevForm = () => {
-  const { devRegister } = useContext(DevContext);
+  const { devRegister, getDevList, devList, editProfile } =
+    useContext(DevContext);
+  const [devData, setDevData] = useState({});
 
   const options = [
     { value: "appDevelopment", label: "Desenvolvimento de Aplicativos" },
@@ -27,25 +29,76 @@ const DevForm = () => {
   const [services, setServices] = useState([]);
   const [tecnologyList, setTecnologyList] = useState("");
   const [about, setAbout] = useState("");
-  const data = {
-    userId: userInfo.id,
-    bio: about,
-    contacts: { linkedin, gitHub, email: userInfo.email },
-    categories: services.map((i) => i.label),
-    hourValue: price,
-    services: tecnologyList,
-  };
 
   const onSelectChange = (value) => {
     setServices(value);
-    return services;
+  };
+
+  const handleSubmit = () => {
+    let data = devList.filter((dev) => dev.userId === userInfo.id);
+    if (data.length > 0) {
+      editDev();
+    } else {
+      registerDev();
+    }
   };
 
   const registerDev = () => {
+    const data = {
+      userId: userInfo.id,
+      bio: about,
+      contacts: { linkedin, gitHub, email: userInfo.email },
+      categories: services.map((i) => i.label),
+      hourValue: price,
+      services: tecnologyList.split(","),
+    };
     if (data.categories.length > 0 && price > 0) {
-      return devRegister(data);
+      devRegister(data);
     }
   };
+
+  const editDev = () => {
+    const data = {
+      userId: userInfo.id,
+      bio: about,
+      contacts: { linkedin, gitHub, email: userInfo.email },
+      categories: services.map((i) => i.label),
+      hourValue: price,
+      services: tecnologyList.split(","),
+    };
+    if (data.categories.length > 0 && price > 0) {
+      editProfile(data);
+    }
+  };
+
+  useEffect(() => {
+    getDevList();
+  }, []);
+
+  useEffect(() => {
+    let data = devList.filter((dev) => dev.userId === userInfo.id);
+    console.log(data);
+    if (data.length > 0) {
+      setLinkedin(data[0].contacts.linkedin);
+      setGitHub(data[0].contacts.gitHub);
+      setPrice(data[0].hourValue);
+      setServices(
+        data[0].categories.map((category) => {
+          let categoryOnOption = {};
+          options.forEach((option) => {
+            if (option.label === category) {
+              categoryOnOption = option;
+            }
+          });
+          return categoryOnOption;
+        })
+      );
+      setTecnologyList(data[0].services.join(", "));
+      setAbout(data[0].bio);
+    }
+  }, [devList]);
+
+  console.log(services);
 
   return (
     <Box
@@ -105,23 +158,27 @@ const DevForm = () => {
           >
             <ComponentInput
               labelMessage="Linkedin"
+              value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
               placeholderMessage="Linkedin"
             />
             <ComponentInput
               labelMessage="Github"
+              value={gitHub}
               onChange={(e) => setGitHub(e.target.value)}
               placeholderMessage="Github"
             />
 
             <ComponentInput
               labelMessage="Valor/hora"
+              value={price}
               placeholderMessage="R$ 20,00"
               onChange={(e) => setPrice(e.target.value)}
               type="number"
             />
             <ComponentInput
               labelMessage="Quais tecnologias você usa?"
+              value={tecnologyList}
               onChange={(e) => setTecnologyList(e.target.value)}
               placeholderMessage="Ex: HTML,JS,CSS..."
             />
@@ -135,6 +192,7 @@ const DevForm = () => {
               <Select
                 options={options}
                 isMulti
+                value={services}
                 closeMenuOnSelect={false}
                 onChange={onSelectChange}
                 placeholder="Categorias"
@@ -145,6 +203,7 @@ const DevForm = () => {
             <FormLabel>O que você faz?</FormLabel>
             <TextAreaInput
               rows="8"
+              value={about}
               onChange={(e) => setAbout(e.target.value)}
               placeholder="Fale mais sobre você aqui..."
               register={() => {}}
@@ -160,8 +219,7 @@ const DevForm = () => {
             m: "0 auto 20px",
           }}
           onClick={() => {
-            console.log(data);
-            registerDev();
+            handleSubmit();
           }}
         >
           Enviar
