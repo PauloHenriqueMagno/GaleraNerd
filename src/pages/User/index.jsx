@@ -1,11 +1,15 @@
 import { Accordion } from "@chakra-ui/accordion";
-import { useContext } from "react";
+import { Box } from "@chakra-ui/layout";
+import { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import ProjectCard from "../../components/ProjectCard";
 import { ProjectsContext } from "../../providers/Projects";
 
 const User = () => {
-  const { projectList } = useContext(ProjectsContext);
+  const { projectList, getProjects } = useContext(ProjectsContext);
+  useEffect(() => {
+    getProjects();
+  }, []);
   console.log(projectList);
   return (
     <>
@@ -18,60 +22,17 @@ const User = () => {
           m: "0",
         }}
       >
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Em andamento"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Recusado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
-        <ProjectCard
-          sx={{ m: 5 }}
-          id="1"
-          devId="2"
-          projectId="3"
-          description="quero café"
-          status="Finalizado"
-          budget="2 conto ta bão"
-        />
         {projectList.map((project) => (
-          <ProjectCard
-            id="1"
-            devId="2"
-            projectId="3"
-            description="quero café"
-            status="Finalizado"
-            budget="2 conto ta bão"
-          />
+          <Box key={project.id}>
+            <ProjectCard
+              id={project.userId}
+              devId={project.devId}
+              projectId={project.id}
+              description={project.requestDescription}
+              status={project.status}
+              budget={project.budget}
+            />
+          </Box>
         ))}
       </Accordion>
     </>
