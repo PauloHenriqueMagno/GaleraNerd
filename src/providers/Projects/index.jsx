@@ -56,8 +56,8 @@ export const ProjectsProvider = ({ children }) => {
       });
   };
 
-  const createProject = async (data) => {
-    await api
+  const createProject = (data) => {
+    api
       .post("projects", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
