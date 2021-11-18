@@ -1,7 +1,7 @@
 import { chakra } from "@chakra-ui/react";
 import { AiFillStar } from "react-icons/ai";
 
-const StarAverage = ({ rate }) => {
+const StarAverage = ({ rate, id }) => {
   let stars = [0, 0, 0, 0, 0];
 
   for (let i = 0; i < 5; i++) {
@@ -11,7 +11,13 @@ const StarAverage = ({ rate }) => {
   const Star = (value, index) => {
     return (
       <svg height="20px" width="20px">
-        <linearGradient id={`grad${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient
+          id={`grad${index}${id}`}
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
           <stop
             offset={`${100 * value}%`}
             style={{ "stop-color": "#FED253", "stop-opacity": "1" }}
@@ -21,7 +27,7 @@ const StarAverage = ({ rate }) => {
             style={{ "stop-color": "grey", "stop-opacity": "1" }}
           />
         </linearGradient>
-        <AiFillStar fill={`url(#grad${index})`} size="20px" />
+        <AiFillStar fill={`url(#grad${index}${id})`} size="20px" />
       </svg>
     );
   };

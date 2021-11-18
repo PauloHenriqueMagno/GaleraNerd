@@ -10,6 +10,7 @@ const Login = () => {
   window.onresize = () => {
     setWidth(window.innerWidth);
   };
+
   return (
     <Box sx={style}>
       <ReturnButton />

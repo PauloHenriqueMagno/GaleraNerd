@@ -4,6 +4,7 @@ html,body,header,main,footer,section,aside,nav,div,form,ul,ol,li,h1,h2,h3,h4,h5,
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  scroll-behavior: smooth;
 }
 
 body {

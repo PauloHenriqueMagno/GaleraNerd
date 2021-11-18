@@ -1,11 +1,13 @@
 import api from "../../services";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router";
 import { useToast } from "@chakra-ui/toast";
+import { useFeedbacks } from "../Feedbacks";
 
 export const DevContext = createContext();
 
 export const DevProvider = ({ children }) => {
+  const { createFeedback } = useFeedbacks();
   const toast = useToast();
 
   const history = useHistory();
@@ -30,13 +32,29 @@ export const DevProvider = ({ children }) => {
       .patch(`dev/${userInfo.id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast({
+          position: "top-left",
+          title: "Perfil editado com sucesso!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Não foi possível editar",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   const devRegister = (data) => {
-    console.log(data);
-
     api
       .post("dev", data, {
         headers: {
@@ -46,17 +64,32 @@ export const DevProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log("api response:", res);
-        history.push("dev");
+        createFeedback({
+          devId: res.data.userId,
+          attendance: [],
+          price: [],
+          recommendation: [],
+          comment: [],
+        });
+
         toast({
           position: "top-left",
-          title: "Registrado com sucesso",
+          title: "Cadastrado com sucesso",
           status: "success",
           duration: 2000,
           isClosable: true,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast({
+          position: "top-left",
+          title: "Ops! Houve algum problema no seu cadastro",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      });
   };
 
   return (
@@ -67,3 +100,5 @@ export const DevProvider = ({ children }) => {
     </DevContext.Provider>
   );
 };
+
+export const useDev = () => useContext(DevContext);
