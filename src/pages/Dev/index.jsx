@@ -14,7 +14,6 @@ const Dev = () => {
   const userInfo = JSON.parse(localStorage.getItem("galeranerd/user")) || "";
 
   useEffect(() => {
-    console.log(projectList);
     getProjects();
     let data = devList.filter((dev) => dev.userId === userInfo.id);
 
@@ -22,6 +21,10 @@ const Dev = () => {
       setShowForm(false);
     }
   }, []);
+
+  const filteredProjects = projectList.filter(
+    (project) => project.devId === userInfo.id
+  );
 
   return (
     <>
@@ -37,7 +40,7 @@ const Dev = () => {
               }
             : {
                 mobile: "linear(to-b, purple.2 10%, white 10%)",
-                desktop: "linear(to-b, purple.2 14%, white 10%, )",
+                desktop: "linear(to-b, purple.2 100px, white 0px, )",
               }
         }
       >
@@ -74,7 +77,7 @@ const Dev = () => {
             Meus projetos
           </Heading>
           <Accordion mt="50px" defaultIndex={[0]} allowMultiple>
-            {projectList.map((project) => (
+            {filteredProjects.map((project) => (
               <ProjectCard
                 id={project.userId}
                 devId={project.devId}
