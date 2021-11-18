@@ -54,6 +54,7 @@ const DevForm = ({ setShowForm }) => {
     };
     if (data.categories.length > 0 && price > 0) {
       devRegister(data);
+      setShowForm(false);
     }
   };
 
