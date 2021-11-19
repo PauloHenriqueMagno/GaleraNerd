@@ -40,7 +40,11 @@ export const FeedbackProvider = ({ children }) => {
   const editFeedback = (data) => {
     api
       .patch(`feedbacks/${data.id}`, data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("galeranerd/token")
+          )}`,
+        },
       })
       .then((res) => {
         toast({
